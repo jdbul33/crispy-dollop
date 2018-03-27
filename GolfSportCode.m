@@ -106,9 +106,15 @@ prob.Objective = (10*s('C1')+10*s('C2')+10*s('C3')+10*s('G1')+10*s('G2')+10*s('G
 	+228*x('C3')+220*x('G3')+240*x('T3')...
 	+350*y('C3')+360*y('G3')+370*y('T3')...
 	+420*z('C3')+435*z('G3')+450*z('T3'));
-end
 
-prob.Constraints.cons1 = ;
+
+	
+%Initialize all constraints
+
+%Chandler Period 1 Labor
+prob.Constraints.cons1 = s('C1')+s('C3')+1.5*g('C1')+1.5*g('C3')+1.5*i('C1')+1.5*i('C3')+3*w('C1')+1.5*w('C3')+4*h('C1')+4*h('C3')...
+	+(13*1+1.5*10+3*3)*v('C1')+(13*1+1.5*10+3*3)*v('C3')+(13*1+1.5*10+3*4)*x('C1')+(13*1+1.5*10+3*4)*x('C3')...
+	+(13*1.5+1.5*10+3*3)*y('C1')+(13*1.5+1.5*10+3*3)*y('C3')+(13*1.5+1.5*10+3*4)*z('C1')+(13*1.5+1.5*10+3*4)*v('C3') <= 12000;
 prob.Constraints.cons2 = ;
 prob.Constraints.cons3 = ;
 prob.Constraints.cons4 = ;

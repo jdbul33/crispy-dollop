@@ -116,7 +116,7 @@ prob.Constraints.cons1 = s('C1')+s('C3')+1.5*g('C1')+1.5*g('C3')+1.5*i('C1')+1.5
 	+(13*1+1.5*10+3*3)*v('C1')+(13*1+1.5*10+3*3)*v('C3')+(13*1+1.5*10+3*4)*x('C1')+(13*1+1.5*10+3*4)*x('C3')...
 	+(13*1.5+1.5*10+3*3)*y('C1')+(13*1.5+1.5*10+3*3)*y('C3')+(13*1.5+1.5*10+3*4)*z('C1')+(13*1.5+1.5*10+3*4)*v('C3') <= 12000;
 %Chandler Period 2 Labor
-prob.Constraints.cons2 = s('C2')+1.5*g('C2')+1.5*i('C2'))+3*w('C2')+4*h('C2')...
+prob.Constraints.cons2 = s('C2')+1.5*g('C2')+1.5*i('C2')+3*w('C2')+4*h('C2')...
 	+(13*1+1.5*10+3*3)*v('C2')+(13*1+1.5*10+3*4)*x('C2')...
 	+(13*1.5+1.5*10+3*3)*y('C2')+(13*1.5+1.5*10+3*4)*z('C2') <= 12000;
 
@@ -172,66 +172,66 @@ prob.Constraints.cons16 = ;
 
 %Chandler Period 2 Sales Bounds
 prob.Constraints.cons17 = s('C2')+s('C3') <= 2000;
-prob.Constraints = g('C2')+g('C3') <= 2000;
-prob.Constraints = g('C2')+g('C3') >= 100;
-prob.Constraints = i('C2')+i('C3') <= 2000;
-prob.Constraints = i('C2')+i('C3') >= 200;
-prob.Constraints = w('C2')+w('C3') <= 2000;
-prob.Constraints = w('C2')+w('C3') >= 30;
-prob.Constraints = h('C2')+h('C3') <= 2000;
-prob.Constraints = h('C2')+h('C3') >= 100;
-prob.Constraints = v('C2')+v('C3') <= 200;
-prob.Constraints = x('C2')+x('C3') <= 100;
-prob.Constraints = y('C2')+y('C3') <= 300;
-prob.Constraints = z('C2')+z('C3') <= 400;
+prob.Constraints.cons18 = g('C2')+g('C3') <= 2000;
+prob.Constraints.cons19 = g('C2')+g('C3') >= 100;
+prob.Constraints.cons20 = i('C2')+i('C3') <= 2000;
+prob.Constraints.cons21 = i('C2')+i('C3') >= 200;
+prob.Constraints.cons22 = w('C2')+w('C3') <= 2000;
+prob.Constraints.cons23 = w('C2')+w('C3') >= 30;
+prob.Constraints.cons24 = h('C2')+h('C3') <= 2000;
+prob.Constraints.cons25 = h('C2')+h('C3') >= 100;
+prob.Constraints.cons26 = v('C2')+v('C3') <= 200;
+prob.Constraints.cons27 = x('C2')+x('C3') <= 100;
+prob.Constraints.cons28 = y('C2')+y('C3') <= 300;
+prob.Constraints.cons29 = z('C2')+z('C3') <= 400;
 
 %Glendale Period 2 Sales Bounds
-prob.Constraints.cons18 = s('G2')+s('G3') <= 2000;
-prob.Constraints = g('G2')+g('G3') <= 2000;
-prob.Constraints = g('G2')+g('G3') >= 100;
-prob.Constraints = i('G2')+i('G3') <= 2000;
-prob.Constraints = i('G2')+i('G3') >= 200;
-prob.Constraints = w('G2')+w('G3') <= 2000;
-prob.Constraints = w('G2')+w('G3') >= 30;
-prob.Constraints = h('G2')+h('G3') <= 2000;
-prob.Constraints = h('G2')+h('G3') >= 100;
-prob.Constraints = v('G2')+v('G3') <= 200;
-prob.Constraints = x('G2')+x('G3') <= 100;
-prob.Constraints = y('G2')+y('G3') <= 300;
-prob.Constraints = z('G2')+z('G3') <= 400;
+prob.Constraints.cons30 = s('G2')+s('G3') <= 2000;
+prob.Constraints.cons31 = g('G2')+g('G3') <= 2000;
+prob.Constraints.cons32 = g('G2')+g('G3') >= 100;
+prob.Constraints.cons33 = i('G2')+i('G3') <= 2000;
+prob.Constraints.cons34 = i('G2')+i('G3') >= 200;
+prob.Constraints.cons35 = w('G2')+w('G3') <= 2000;
+prob.Constraints.cons36 = w('G2')+w('G3') >= 30;
+prob.Constraints.cons37 = h('G2')+h('G3') <= 2000;
+prob.Constraints.cons38 = h('G2')+h('G3') >= 100;
+prob.Constraints.cons39 = v('G2')+v('G3') <= 200;
+prob.Constraints.cons40 = x('G2')+x('G3') <= 100;
+prob.Constraints.cons41 = y('G2')+y('G3') <= 300;
+prob.Constraints.cons42 = z('G2')+z('G3') <= 400;
 
 %Tucson Period 2 Sales Bounds
-prob.Constraints.cons19 = s('T2')+s('T3') <= 2000;
-prob.Constraints = g('T2')+g('T3') <= 2000;
-prob.Constraints = g('T2')+g('T3') >= 50;
-prob.Constraints = i('T2')+i('T3') <= 2000;
-prob.Constraints = i('T2')+i('T3') >= 100;
-prob.Constraints = w('T2')+w('T3') <= 2000;
-prob.Constraints = w('T2')+w('T3') >= 15;
-prob.Constraints = h('T2')+h('T3') <= 2000;
-prob.Constraints = h('T2')+h('T3') >= 100;
-prob.Constraints = v('T2')+v('T3') <= 200;
-prob.Constraints = x('T2')+x('T3') <= 100;
-prob.Constraints = y('T2')+y('T3') <= 300;
-prob.Constraints = z('T2')+z('T3') <= 400;
+prob.Constraints.cons43 = s('T2')+s('T3') <= 2000;
+prob.Constraints.cons44 = g('T2')+g('T3') <= 2000;
+prob.Constraints.cons45 = g('T2')+g('T3') >= 50;
+prob.Constraints.cons46 = i('T2')+i('T3') <= 2000;
+prob.Constraints.cons47 = i('T2')+i('T3') >= 100;
+prob.Constraints.cons48 = w('T2')+w('T3') <= 2000;
+prob.Constraints.cons49 = w('T2')+w('T3') >= 15;
+prob.Constraints.cons50 = h('T2')+h('T3') <= 2000;
+prob.Constraints.cons51 = h('T2')+h('T3') >= 100;
+prob.Constraints.cons52 = v('T2')+v('T3') <= 200;
+prob.Constraints.cons53 = x('T2')+x('T3') <= 100;
+prob.Constraints.cons54 = y('T2')+y('T3') <= 300;
+prob.Constraints.cons55 = z('T2')+z('T3') <= 400;
 
 %Chandler Period 1 Set Assembly
-prob.Constraints.cons20 = ;
+prob.Constraints.cons56 = ;
 
 %Chandler Period 2 Set Assembly
-prob.Constraints.cons21 = ;
+prob.Constraints.cons57 = ;
 
 %Glendale Period 1 Set Assembly
-prob.Constraints.cons22 = ;
+prob.Constraints.cons58 = ;
 
 %Glendale Period 2 Set Assembly
-prob.Constraints.cons23 = ;
+prob.Constraints.cons59 = ;
 
 %Tucson Period 1 Set Assembly
-prob.Constraints.cons24 = ;
+prob.Constraints.cons60 = ;
 
 %Tucson Period 1 Set Assembly
-prob.Constraints.cons25 = ;
+prob.Constraints.cons61 = ;
 
 
 

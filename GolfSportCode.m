@@ -1,3 +1,4 @@
+tic;
 vars = {'C1','C2','C3','G1','G2','G3','T1','T2','T3'};
 
 
@@ -12,6 +13,7 @@ v = optimvar('v',vars,'lowerbound',0,'type','integer');
 x = optimvar('x',vars,'lowerbound',0,'type','integer');
 y = optimvar('y',vars,'lowerbound',0,'type','integer');
 z = optimvar('z',vars,'lowerbound',0,'type','integer');
+e = optimvar('e','lowerbound',0);
 
 
 % set each product's minimal and maximal by plant only upper bounds for period 1
@@ -164,11 +166,13 @@ prob.Constraints.cons13 = ;
 %Period 2 Advertising
 prob.Constraints.cons14 = ;
 
-%Period 1 Graphite
-prob.Constraints.cons15 = ;
+%Period 1 Graphite  should we carry over for next period?????? add in excess variable
+prob.Constraints.cons15 = 0.25*(g('C1')+g('C3')+g('G1')+g('G3')+g('T1')+g('T3'))+3.25*(y('C1')+y('C3')+z('C1')+z('C3')...
+	y('G1')+y('G3')+z('G1')+z('G3')+y('T1')+y('T3')+z('T1')+z('T3')) + e == 1000;
 
 %Period 2 Graphite
-prob.Constraints.cons16 = ;
+prob.Constraints.cons16 = 0.25*(g('C1')+g('G2')+g('T2'))+3.25*(y('C2')+z('C2')...
+	y('G2')+z('G2')+y('T2')+z('T2')) <= (1000+e);
 
 %Chandler Period 2 Sales Bounds
 prob.Constraints.cons17 = s('C2')+s('C3') <= 2000;
@@ -216,22 +220,22 @@ prob.Constraints.cons54 = y('T2')+y('T3') <= 300;
 prob.Constraints.cons55 = z('T2')+z('T3') <= 400;
 
 %Chandler Period 1 Set Assembly
-prob.Constraints.cons56 = ;
+prob.Constraints.cons56 = 65*(v('C1')+v('C3')+x('C1')+x('C3')+y('C1')+y('C3')+z('C1')+z('C3')) <= 5500;
 
 %Chandler Period 2 Set Assembly
-prob.Constraints.cons57 = ;
+prob.Constraints.cons57 = 65*(v('C2')+x('C2')+y('C2')+z('C2')) <= 5500;
 
 %Glendale Period 1 Set Assembly
-prob.Constraints.cons58 = ;
+prob.Constraints.cons58 = 60*(v('G1')+v('G3')+x('G1')+x('G3')+y('G1')+y('G3')+z('G1')+z('G3')) <= 5000;
 
 %Glendale Period 2 Set Assembly
-prob.Constraints.cons59 = ;
+prob.Constraints.cons59 = 60*(v('G2')+x('G2')+y('G2')+z('G2')) <= 5000;
 
 %Tucson Period 1 Set Assembly
-prob.Constraints.cons60 = ;
+prob.Constraints.cons60 = 65*(v('T1')+v('T3')+x('T1')+x('T3')+y('T1')+y('T3')+z('T1')+z('T3')) <= 6000;
 
 %Tucson Period 1 Set Assembly
-prob.Constraints.cons61 = ;
+prob.Constraints.cons61 = 65*(v('T2')+x('T2')+y('T2')+z('T2')) <= 6000;
 
 
 
@@ -251,3 +255,4 @@ prob.Constraints.cons61 = ;
 
 
 [sol,fval] = solve(prob)
+toc;

@@ -4,10 +4,10 @@ vars = {'C1','C2','C3','G1','G2','G3','T1','T2','T3'};
 %set a variable to each product with zero lower bounds if applicable
 
 s = optimvar('s',vars,'lowerbound',0,'type','integer');
-g = optimvar('g',vars,'type','integer');
-i = optimvar('i',vars,'type','integer');
-w = optimvar('w',vars,'type','integer');
-h = optimvar('h',vars,'type','integer');
+g = optimvar('g',vars,'lowerbound',0,'type','integer');
+i = optimvar('i',vars,'lowerbound',0,'type','integer');
+w = optimvar('w',vars,'lowerbound',0,'type','integer');
+h = optimvar('h',vars,'lowerbound',0,'type','integer');
 v = optimvar('v',vars,'lowerbound',0,'type','integer');
 x = optimvar('x',vars,'lowerbound',0,'type','integer');
 y = optimvar('y',vars,'lowerbound',0,'type','integer');
@@ -140,10 +140,114 @@ prob.Constraints.cons6 = 3*s('T2')+3.5*g('T2')+4*i('T2')+4.5*w('T2')+5.5*h('T2')
 	+(13*3+4*10+4.5*3)*v('T2')+(13*3+4*10+5.5*3)*x('T2')...
 	+(13*3.5+4*10+4.5*3)*y('T2')+(13*3.5+4*10+5.5*3)*z('T2') <= 22000;
 
+%Chandler Period 1 Packing
 prob.Constraints.cons7 = ;
+
+%Chandler Period 2 Packing
 prob.Constraints.cons8 = ;
+
+%Glendale Period 1 Packing
 prob.Constraints.cons9 = ;
+
+%Glendale Period 2 Packing
 prob.Constraints.cons10 = ;
+
+%Tucson Period 1 Packing
 prob.Constraints.cons11 = ;
+
+%Tucson Period 3 Packing
+prob.Constraints.cons12 = ;
+
+%Period 1 Advertising
+prob.Constraints.cons13 = ;
+
+%Period 2 Advertising
+prob.Constraints.cons14 = ;
+
+%Period 1 Graphite
+prob.Constraints.cons15 = ;
+
+%Period 2 Graphite
+prob.Constraints.cons16 = ;
+
+%Chandler Period 2 Sales Bounds
+prob.Constraints.cons17 = s('C2')+s('C3') <= 2000;
+prob.Constraints = g('C2')+g('C3') <= 2000;
+prob.Constraints = g('C2')+g('C3') >= 100;
+prob.Constraints = i('C2')+i('C3') <= 2000;
+prob.Constraints = i('C2')+i('C3') >= 200;
+prob.Constraints = w('C2')+w('C3') <= 2000;
+prob.Constraints = w('C2')+w('C3') >= 30;
+prob.Constraints = h('C2')+h('C3') <= 2000;
+prob.Constraints = h('C2')+h('C3') >= 100;
+prob.Constraints = v('C2')+v('C3') <= 200;
+prob.Constraints = x('C2')+x('C3') <= 100;
+prob.Constraints = y('C2')+y('C3') <= 300;
+prob.Constraints = z('C2')+z('C3') <= 400;
+
+%Glendale Period 2 Sales Bounds
+prob.Constraints.cons18 = s('G2')+s('G3') <= 2000;
+prob.Constraints = g('G2')+g('G3') <= 2000;
+prob.Constraints = g('G2')+g('G3') >= 100;
+prob.Constraints = i('G2')+i('G3') <= 2000;
+prob.Constraints = i('G2')+i('G3') >= 200;
+prob.Constraints = w('G2')+w('G3') <= 2000;
+prob.Constraints = w('G2')+w('G3') >= 30;
+prob.Constraints = h('G2')+h('G3') <= 2000;
+prob.Constraints = h('G2')+h('G3') >= 100;
+prob.Constraints = v('G2')+v('G3') <= 200;
+prob.Constraints = x('G2')+x('G3') <= 100;
+prob.Constraints = y('G2')+y('G3') <= 300;
+prob.Constraints = z('G2')+z('G3') <= 400;
+
+%Tucson Period 2 Sales Bounds
+prob.Constraints.cons19 = s('T2')+s('T3') <= 2000;
+prob.Constraints = g('T2')+g('T3') <= 2000;
+prob.Constraints = g('T2')+g('T3') >= 50;
+prob.Constraints = i('T2')+i('T3') <= 2000;
+prob.Constraints = i('T2')+i('T3') >= 100;
+prob.Constraints = w('T2')+w('T3') <= 2000;
+prob.Constraints = w('T2')+w('T3') >= 15;
+prob.Constraints = h('T2')+h('T3') <= 2000;
+prob.Constraints = h('T2')+h('T3') >= 100;
+prob.Constraints = v('T2')+v('T3') <= 200;
+prob.Constraints = x('T2')+x('T3') <= 100;
+prob.Constraints = y('T2')+y('T3') <= 300;
+prob.Constraints = z('T2')+z('T3') <= 400;
+
+%Chandler Period 1 Set Assembly
+prob.Constraints.cons20 = ;
+
+%Chandler Period 2 Set Assembly
+prob.Constraints.cons21 = ;
+
+%Glendale Period 1 Set Assembly
+prob.Constraints.cons22 = ;
+
+%Glendale Period 2 Set Assembly
+prob.Constraints.cons23 = ;
+
+%Tucson Period 1 Set Assembly
+prob.Constraints.cons24 = ;
+
+%Tucson Period 1 Set Assembly
+prob.Constraints.cons25 = ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 [sol,fval] = solve(prob)

@@ -254,5 +254,5 @@ prob.Constraints.cons60 = 65*(v('T1')+v('T3')+x('T1')+x('T3')+y('T1')+y('T3')+z(
 prob.Constraints.cons61 = 65*(v('T2')+x('T2')+y('T2')+z('T2')) <= 6000;
 
 
-[sol,fval] = solve(prob)
+[sol,fval] = solve(prob);
 toc;

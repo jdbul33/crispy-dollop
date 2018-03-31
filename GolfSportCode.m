@@ -184,11 +184,11 @@ prob.Constraints.cons14 = s('C2')+1.5*g('C2')+1.1*i('C2')+1.5*w('C2')+1.9*h('C2'
 
 %Period 1 Graphite
 prob.Constraints.cons15 = 0.25*(g('C1')+g('C3')+g('G1')+g('G3')+g('T1')+g('T3'))+3.25*(y('C1')+y('C3')+z('C1')+z('C3')...
-	y('G1')+y('G3')+z('G1')+z('G3')+y('T1')+y('T3')+z('T1')+z('T3')) + e == 1000;
+	+y('G1')+y('G3')+z('G1')+z('G3')+y('T1')+y('T3')+z('T1')+z('T3')) + e == 1000;
 
 %Period 2 Graphite
 prob.Constraints.cons16 = 0.25*(g('C1')+g('G2')+g('T2'))+3.25*(y('C2')+z('C2')...
-	y('G2')+z('G2')+y('T2')+z('T2')) <= (1000+e);
+	+y('G2')+z('G2')+y('T2')+z('T2')) <= (1000+e);
 
 %Chandler Period 2 Sales Bounds
 prob.Constraints.cons17 = s('C2')+s('C3') <= 2000;

@@ -13,10 +13,19 @@ This problem examines a manufacturing optimization case........
 \section{Background and Prior Work}
 Here is a good spot to insertour necessary references.  We can evaluate solutions of similar problems
 \section{Description of Problem}
-This is where we describe what the problem we are trying to solve is
+Golf-Sport is a golfclub manufacturing company with three plants in Arizona.  Each plant has an attached retail store and is treated as its
+only supplier.  Each location has predicted minimum and maximum sales of each item type per period.  The goal of this optimization is to maximize profit over a two-month period by determining the optimal number of each product to make
+at each location.  In this problem, two types of constraints exist:  local \& global.  Local constraints are unique to each plant/store
+ combination, while the global constraints refer to company-wide resources.
 \section{Mathematical Formulation \& Model}
 \subsection{Assumptions}
-Here we add assumptions about 2 month not going concern, minimization of inventory, selling all of per 1 and using period 3 for carryover
+Two main assumptions were made in order to create an effective model for this problem.  First, this model represents the company's production as if it were not a 
+going-concern.  The model is constructed to optimize profit over two months, thereby not building up any additional inventory for carryover into 
+a third month.  By default, the model will not have any inventory left at the end of the second month.  If further information were to arise along with 
+a modeling need for a third month, this could be accomplished by expanding the current model. \par
+The second assumption used is the carryover of graphite stock between months.  Advertising and graphite allotments are companywide in this problem, and 
+it is clearly stated that the amount of money earmarked for advertising each month will not carryover into the next month.  Graphite seems to have no such restriction, so 
+it appears reasonable to incorporate the possibility of carryover of graphite stock.
 \subsection{Variables}
 List our variables and indices, maybe in a table if i can figure out how to do it
 \subsection{Objective}

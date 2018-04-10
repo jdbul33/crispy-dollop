@@ -18,6 +18,9 @@ only supplier.  Each location has predicted minimum and maximum sales of each it
 at each location.  In this problem, two types of constraints exist:  local \& global.  Local constraints are unique to each plant/store
  combination, while the global constraints refer to company-wide resources.
 \section{Mathematical Formulation \& Model}
+This problem is set up as a mixed integer programming problem, with a single objective function to be maximized (representing profit).  
+The decision variable are set to be the production of each product item, indexed by location and period.  In determining the maximum profit given the constraints, 
+the solution will also yield the optimal production plan for Golf-Sport.
 \subsection{Assumptions}
 Two main assumptions were made in order to create an effective model for this problem.  First, this model represents the company's production as if it were not a 
 going-concern.  The model is constructed to optimize profit over two months, thereby not building up any additional inventory for carryover into 
@@ -26,8 +29,30 @@ a modeling need for a third month, this could be accomplished by expanding the c
 The second assumption used is the carryover of graphite stock between months.  Advertising and graphite allotments are companywide in this problem, and 
 it is clearly stated that the amount of money earmarked for advertising each month will not carryover into the next month.  Graphite seems to have no such restriction, so 
 it appears reasonable to incorporate the possibility of carryover of graphite stock.
+\subsection{Indices}
+\begin{tabular}{ c c }
+\textbf{Index} & \textbf{Location} \\
+\textit{C} & Chandler \\
+\textit{G} & Glendale \\
+\textit{T} & Tucson \\
+\textbf{Index} & \textbf{Period Description} \\
+\textit{1} & Produced \& Sold in Period 1 \\
+\textit{2} & Produced \& Sold in Period 2 \\
+\textit{3} & Produced in Period 1 \& Sold in Period 2 \\
+\end{tabular}
 \subsection{Variables}
-List our variables and indices, maybe in a table if i can figure out how to do it
+\begin{tabular}{ c c }
+\textbf{Variable} & \textbf{Product} \\
+\textit{s} & Steel Shafts \\
+\textit{g} & Graphite Shafts \\
+\textit{i} & Forged Iron Heads \\
+\textit{w} & Metal Wood Heads \\
+\textit{h} & Titanium Insert Wood Heads \\
+\textit{v} & Set, Steel Shafts, Metal Heads \\
+\textit{x} & Set, Steel Shafts, Insert Heads \\
+\textit{y} & Set, Graphite Shafts, Metal Heads \\
+\textit{z} & Set, Graphite Shafts, Insert Heads \\
+\end{tabular}
 \subsection{Objective}
 Here we put in our objective function and explain the goal behind it
 \subsection{Constraints}

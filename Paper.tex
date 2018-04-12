@@ -54,19 +54,23 @@ it appears reasonable to incorporate the possibility of carryover of graphite st
 \textit{z} & Set, Graphite Shafts, Insert Heads \\
 \end{tabular}
 \subsection{Objective}
-Here we put in our objective function and explain the goal behind it
+The objective of this model is to maximize profit, represented as the difference between sales revenue and cost.  For the purposes of this function let \textit{R, C \& I} represent revenue, cost, and inventory cost, respectively.  In this function, \textit{x} represents product production.  The function can be expressed as:
+
+$$f(x) = \sum_{i=1}^{3}Rx_{i} - \sum_{i=1}^{3}Cx_{i} - \sum Ix_{3} $$
+
+The total revenue from all products produced and sold, less the cost of manufacture and inventory, is represented in this function.  While designed for a two-period optimization, the base function can be easily expanded to accomodate for more periods of production and sales.
+
 \subsection{Constraints}
 Here we list all constraints in with an explanation surrounding each
-\subsection{Heuristics}
-Just kidding, this problem is not big enough for any heuristics
 \section{Implementation}
 \subsection{Hardware \& Software}
-Problem was solved using MATLAB R2017B  It was run on a computer.....
+The problem was coded and solved in MATLAB R2017b on a personal computer.  The code does not appear to be backward-compatible due to the use of the \textit{optimproblem} implementation.  The small scale of this optimization does not necessitate a computer beyond average specifications.
 \subsection{Coding}
 %Maybe insert a page of pseudocode here???????
 Code
 \subsection{Algorithm}
-Run as an IP using optimproblem, which is essentially an interior points method of solution.  Will run an LP to examine solutions
+This problem was solved using the \textit{intlinprog} function in MATLAB.  This function conducts a linear relaxation on the problem, in order to set the upper bound.  Then, the algorithm iterates through a branch-and-cut approach to solve for the optimal integer solution.  By default, the function 
+will iterate through 1,000,000 iterations prior to terminating.  Additionally, the function applies basic heuristics in the form of Gomory cuts.  Gomory cuts 
 \section{Solution}
 Explain results, compare to linear relaxation of the problem
 \par

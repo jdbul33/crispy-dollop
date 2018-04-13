@@ -32,23 +32,22 @@ it appears reasonable to incorporate the possibility of carryover of graphite st
 \subsection{Variables \& Indices}
 \begin{tabular}{ c c }
 \textbf{Variable} & \textbf{Description} \\
-\textit{x} & Production of product \textit{ij} \\
-\textit{c} & Coefficient Cost of Product \textit{ij}\\
+\textit{x} & Production of Product \textit{i} in Period \textit{j} \\
+\textit{e} & Graphite Stock Carryover \\
 \end{tabular}
 
 \begin{tabular}{ c c }
-\textbf{Index} & \textbf{Location} \\
+\textbf{Superscript} & \textbf{Location} \\
 \textit{C} & Chandler \\
 \textit{G} & Glendale \\
 \textit{T} & Tucson \\
-\textbf{Index} & \textbf{Period Description} \\
-\textit{1} & Produced \& Sold in Period 1 \\
-\textit{2} & Produced \& Sold in Period 2 \\
-\textit{3} & Produced in Period 1 \& Sold in Period 2 \\
-\textbf{Index} & \textbf{Product} \\
+\end{tabular}
+
+\begin{tabular}{ c c }
+\textbf{Index \textit{i}} & \textbf{Product} \\
 \textit{s} & Steel Shafts \\
 \textit{g} & Graphite Shafts \\
-\textit{i} & Forged Iron Heads \\
+\textit{r} & Forged Iron Heads \\
 \textit{w} & Metal Wood Heads \\
 \textit{h} & Titanium Insert Wood Heads \\
 \textit{v} & Set, Steel Shafts, Metal Heads \\
@@ -56,41 +55,57 @@ it appears reasonable to incorporate the possibility of carryover of graphite st
 \textit{y} & Set, Graphite Shafts, Metal Heads \\
 \textit{z} & Set, Graphite Shafts, Insert Heads \\
 \end{tabular}
+\begin{tabular}{ c c }
+\textbf{Index \textit{j}} & \textbf{Period Description} \\
+\textit{1} & Produced \& Sold in Period 1 \\
+\textit{2} & Produced \& Sold in Period 2 \\
+\textit{3} & Produced in Period 1 \& Sold in Period 2 \\
+\end{tabular}
 
 \subsection{Objective}
 The objective of this model is to maximize profit, represented as the difference between sales revenue and cost.  For the purposes of this function let \textit{R, C \& I} represent revenue, cost, and inventory cost, respectively.  The function can be expressed as:
 %align functions to the left
 
-$$f(x) = \sum_{i=1}^{3}Rx_{i} - \sum_{i=1}^{3}Cx_{i} - \sum Ix_{3} $$
+$$f(x) = \sum_{j=1}^{3}Rx_{i} - \sum_{j=1}^{3}Cx_{i} - \sum Ix_{i,3} $$
 
 The total revenue from all products produced and sold, less the cost of manufacture and inventory, is represented in this function.  While designed for a two-period optimization, the base function can be easily expanded to accomodate for more periods of production and sales.
-
+%superscript for plant, sub for product and period??
 \subsection{Constraints}
 In construction of this model, the following constraints were constructed within the parameters set forth by the problem:
 \begin{equation}
-\sum cx_{1_i} + \sum cx_{3_i} \leq L_{i}
+\sum c_{i}x_{i,1} + \sum c_{i}x_{i,3} \leq L_{i}
 \end{equation}
 \begin{equation}
-\sum cx_{2_i} \leq L_{i}
+\sum c_{i}x_{i,2} \leq L_{i}
 \end{equation}
 \begin{equation}
-\sum cx_{1_i} + \sum cx_{3_i} \leq P_{i}
+\sum c_{i}x_{i,1} + \sum c_{i}x_{i,3} \leq P_{i}
 \end{equation}
 \begin{equation}
-\sum cx_{2_i} \leq P_{i}
+\sum c_{i}x_{i,2} \leq P_{i}
 \end{equation}
 \begin{equation}
-\sum cx_{1_i} + \sum cx_{3_i} \leq A
+\sum c_{i}x_{i,1} + \sum c_{i}x_{i,3} \leq A
 \end{equation}
 \begin{equation}
-\sum cx_{2_i} \leq A
+\sum c_{i}x_{i,2} \leq A
 \end{equation}
 \begin{equation}
-\sum cx_{1_g,y,z} + \sum cx_{3_g,y,z} + e \leq G_{1}
+\sum c_{i}x_{i,1} + \sum c_{i}x_{i,3} + e \leq G_{1} for i = g, y, z
 \end{equation}
 \begin{equation}
-\sum cx_{2_g,y,z} \leq G_{2} + e
+\sum c_{i}x_{i,2} \leq G_{2} + e  for i = g, y, z
 \end{equation}
+\begin{equation}
+QQQQ \leq x_{i,1} \leq S_{1} %What is a good variable for the constants for sales bounds
+\end{equation}
+\begin{equation}
+QQQQ \leq x_{i,2} + x_{i,3} \leq S_{2}
+\end{equation}
+\begin{equation}
+x_{i,j} \geq 0
+\end{equation}
+
 
 \section{Implementation}
 \subsection{Hardware \& Software}

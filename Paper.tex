@@ -73,38 +73,55 @@ The total revenue from all products produced and sold, less the cost of manufact
 \subsection{Constraints}
 In construction of this model, the following constraints were constructed within the parameters set forth by the problem:
 \begin{equation}
-\sum c_{i}x_{i,1} + \sum c_{i}x_{i,3} \leq L_{i}
+\sum c_{i}x_{i,1} + \sum c_{i}x_{i,3} \leq L_{1} %Labor
 \end{equation}
 \begin{equation}
-\sum c_{i}x_{i,2} \leq L_{i}
+\sum c_{i}x_{i,2} \leq L_{2} % Labor
 \end{equation}
 \begin{equation}
-\sum c_{i}x_{i,1} + \sum c_{i}x_{i,3} \leq P_{i}
+\sum c_{i}x_{i,1} + \sum c_{i}x_{i,3} \leq P_{1} %packing
 \end{equation}
 \begin{equation}
-\sum c_{i}x_{i,2} \leq P_{i}
+\sum c_{i}x_{i,2} \leq P_{2}%packing
 \end{equation}
 \begin{equation}
-\sum c_{i}x_{i,1} + \sum c_{i}x_{i,3} \leq A
+\sum c_{i}x_{i,1} + \sum c_{i}x_{i,3} \leq A %advertise
 \end{equation}
 \begin{equation}
-\sum c_{i}x_{i,2} \leq A
+\sum c_{i}x_{i,2} \leq A %advertise
 \end{equation}
 \begin{equation}
-\sum c_{i}x_{i,1} + \sum c_{i}x_{i,3} + e \leq G_{1} for i = g, y, z
+\sum c_{i}x_{i,1} + \sum c_{i}x_{i,3} + e \leq G_{1},  i = g, y, z %graphite
 \end{equation}
 \begin{equation}
-\sum c_{i}x_{i,2} \leq G_{2} + e  for i = g, y, z
+\sum c_{i}x_{i,2} \leq G_{2} + e, i = g, y, z %graphite
 \end{equation}
 \begin{equation}
-QQQQ \leq x_{i,1} \leq S_{1} %What is a good variable for the constants for sales bounds
+\sum c_{i}x_{i,1} + \sum c_{i}x_{i,3} \leq U_{1} , i = v, u, y, z %set assembly
 \end{equation}
 \begin{equation}
-QQQQ \leq x_{i,2} + x_{i,3} \leq S_{2}
+\sum c_{i}x_{i,2} \leq U_{2},  i = v, u, y, z %set assembly
 \end{equation}
 \begin{equation}
-x_{i,j} \geq 0
+Min_{1} \leq x_{i,1} \leq Max_{1} %What is a good variable for the constants for sales bounds
 \end{equation}
+\begin{equation}
+Min_{2} \leq x_{i,2} + x_{i,3} \leq Max_{2}
+\end{equation}
+\begin{equation}
+x_{i,j} \geq 0, integer %how to best put this into math speak
+\end{equation}
+\begin{equation}
+e \geq 0
+\end{equation}
+
+Constraints 1-4 represent the labor and packing limitations by plant with cost by product.  The first month's costs include the items manufactured and sold that month, as well as the items manufactured 
+for carryover into the second month.  Constraints 5-8 represent the global constraints in this problem:  advertising budget and graphite stock.  The advertising budget is a fixed amount for each month, with no carryover. The 
+graphite stock has a consistent amount per month as well, but excess from the first month can be carried over into the next month.  This carryover amount is represented by \textit{e}.  Constraints 9 \& 10 represent the unique assembly time 
+for the sets of clubs, again varying by plant location. 
+\par
+The final constraints (11-14) represent variable bounds.  Constraint 11 ensures that all items produced and sold in period 1 are within the minimum and maximum demand.  Similarly, inequality 12 ensures that the sum of items produced in period 2 and items carryed over to 
+period 2 are within that month's demand bounds.  Constraints 13 \& 14 further bound all items to be non-negative.
 
 
 \section{Implementation}
@@ -115,11 +132,36 @@ The problem was coded and solved in MATLAB R2017b on a personal computer.  The c
 Code
 \subsection{Algorithm}
 This problem was solved using the \textit{intlinprog} function in MATLAB.  This function conducts a linear relaxation on the problem, in order to set the upper bound.  Then, the algorithm iterates through a branch-and-cut approach to solve for the optimal integer solution.  By default, the function 
-will iterate through 1,000,000 iterations prior to terminating.  Additionally, the function applies basic heuristics in the form of Gomory cuts.  Gomory cuts 
+will iterate through 1,000,000 iterations prior to terminating.  Additionally, the function applies basic heuristics in the form of Gomory cuts.  Gomory cuts are an added constraint along a hyperplane to a vertex.  They are 
+commonly implemented in most commercial integer programming solvers as an initial heuristic.  In optimization software implementations, these cuts tend to be accurate overall and invalid cuts are rarely made \cite{gomory}.
 \section{Solution}
-Explain results, compare to linear relaxation of the problem
-\par
-maybe insert a section with a graph or chart to visualize production
+The model was successfully optimized to the same solution over several runs, yielding the following optimal solution with constraints as laid out in the original problem above:
+\begin{table}
+\begin{tabular}{ l c c c }
+\textbf{Item} & \textbf{Period 1} & \textbf{Period 2} & \textbf{Period 1 Carryover} \\
+
+Steel Shafts & 0 & 0 & 251 \\
+Graphite Shafts & 100 & 2000 & 0 \\
+Iron Heads & 200 & 0 & 200 \\
+Metal Wood Heads & 35 & 1 & 30 \\
+Titanium Insert Wood Heads & 2000 & 1299 & 701 \\
+Set, Steel, Metal Heads & 0 & 0 & 0 \\
+Set, Steel, Titanium Heads & 0 & 0 & 0 \\
+Set, Graphite, Metal Heads & 0 & 0 & 0 \\
+Set, Graphite, Titanium Heads & 0 & 35 & 84\\
+\end{tabular}
+\caption{Optimal Chandler Production}
+\end{table}
+
+\begin{tabular}{ c c c c }
+
+\end{tabular}
+%\caption*{Optimal Chandler Production}
+
+\begin{tabular}{ c c c c }
+
+\end{tabular}
+%\caption*{Optimal Chandler Production}
 \section{Further Analysis}
 Conduct range sensitivity, examine extra problems in case study
 \section{Conclusions \& Implications}
@@ -130,7 +172,10 @@ Discuss optimized solution, range sensitivity, business suggestions
 	\newpage
 	\pagenumbering{gobble}
 	\begin{thebibliography}{9}
-\bibitem{bulger88}
+\bibitem{gomory}
+G\'{e}rard Cornu\'{e}jols, Fran\c{c}ois Margot, \& Giacomo Nannicini. (2013). On the safety of Gomory cut generators. 
+\textit{Mathematical Programming Computation, 5}(4), pp. 345-395.
+
 
 \end{thebibliography}
 \end{document}

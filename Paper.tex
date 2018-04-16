@@ -11,15 +11,15 @@
 \section{Introduction}
 This problem examines a manufacturing optimization case........
 \section{Background and Prior Work}
-Here is a good spot to insertour necessary references.  We can evaluate solutions of similar problems
+ We can evaluate solutions of similar problems
 \section{Description of Problem}
 Golf-Sport is a golfclub manufacturing company with three plants in Arizona.  Each plant has an attached retail store and is treated as its
 only supplier.  Each location has predicted minimum and maximum sales of each item type per period.  The goal of this optimization is to maximize profit over a two-month period by determining the optimal number of each product to make
 at each location.  In this problem, two types of constraints exist:  local \& global.  Local constraints are unique to each plant/store
- combination, while the global constraints refer to company-wide resources.
+ combination, while the global constraints refer to company-wide resources.  Initially, the problem will be modeled and optimized adhering stictly to the provided constraints and bounds.
 \section{Mathematical Formulation \& Model}
 This problem is set up as a mixed integer programming problem, with a single objective function to be maximized (representing profit).  
-The decision variable are set to be the production of each product item, indexed by location and period.  In determining the maximum profit given the constraints, 
+The decision variables are set to be the production of each product item, indexed by location and period.  In determining the maximum profit given the constraints, 
 the solution will also yield the optimal production plan for Golf-Sport.
 \subsection{Assumptions}
 Two main assumptions were made in order to create an effective model for this problem.  First, this model represents the company's production as if it were not a 
@@ -30,21 +30,20 @@ The second assumption used is the carryover of graphite stock between months.  A
 it is clearly stated that the amount of money earmarked for advertising each month will not carryover into the next month.  Graphite seems to have no such restriction, so 
 it appears reasonable to incorporate the possibility of carryover of graphite stock.
 \subsection{Variables \& Indices}
-\begin{tabular}{ c c }
+\begin{tabular}{ |c | c| }
+\hline
 \textbf{Variable} & \textbf{Description} \\
+\hline
 \textit{x} & Production of Product \textit{i} in Period \textit{j} \\
 \textit{e} & Graphite Stock Carryover \\
 \end{tabular}
+\vspace{5mm}
 
-\begin{tabular}{ c c }
-\textbf{Superscript} & \textbf{Location} \\
-\textit{C} & Chandler \\
-\textit{G} & Glendale \\
-\textit{T} & Tucson \\
-\end{tabular}
-
-\begin{tabular}{ c c }
+\noindent
+\begin{tabular}{| c | c |}
+\hline
 \textbf{Index \textit{i}} & \textbf{Product} \\
+\hline
 \textit{s} & Steel Shafts \\
 \textit{g} & Graphite Shafts \\
 \textit{r} & Forged Iron Heads \\
@@ -55,8 +54,12 @@ it appears reasonable to incorporate the possibility of carryover of graphite st
 \textit{y} & Set, Graphite Shafts, Metal Heads \\
 \textit{z} & Set, Graphite Shafts, Insert Heads \\
 \end{tabular}
-\begin{tabular}{ c c }
+\vspace{5mm}
+\\
+\begin{tabular}{ | c | c | }
+\hline
 \textbf{Index \textit{j}} & \textbf{Period Description} \\
+\hline
 \textit{1} & Produced \& Sold in Period 1 \\
 \textit{2} & Produced \& Sold in Period 2 \\
 \textit{3} & Produced in Period 1 \& Sold in Period 2 \\
@@ -134,12 +137,17 @@ Code
 This problem was solved using the \textit{intlinprog} function in MATLAB.  This function conducts a linear relaxation on the problem, in order to set the upper bound.  Then, the algorithm iterates through a branch-and-cut approach to solve for the optimal integer solution.  By default, the function 
 will iterate through 1,000,000 iterations prior to terminating.  Additionally, the function applies basic heuristics in the form of Gomory cuts.  Gomory cuts are an added constraint along a hyperplane to a vertex.  They are 
 commonly implemented in most commercial integer programming solvers as an initial heuristic.  In optimization software implementations, these cuts tend to be accurate overall and invalid cuts are rarely made \cite{gomory}.
+
 \section{Solution}
 The model was successfully optimized to the same solution over several runs, yielding the following optimal solution with constraints as laid out in the original problem above:
-\begin{table}
+\\
+\noindent
+%\begin{table)
 \begin{tabular}{ l c c c }
+\hline
+\multicolumn{4}{|c|}{Optimal Chandler Production} \\
+\hline
 \textbf{Item} & \textbf{Period 1} & \textbf{Period 2} & \textbf{Period 1 Carryover} \\
-
 Steel Shafts & 0 & 0 & 251 \\
 Graphite Shafts & 100 & 2000 & 0 \\
 Iron Heads & 200 & 0 & 200 \\
@@ -150,19 +158,61 @@ Set, Steel, Titanium Heads & 0 & 0 & 0 \\
 Set, Graphite, Metal Heads & 0 & 0 & 0 \\
 Set, Graphite, Titanium Heads & 0 & 35 & 84\\
 \end{tabular}
-\caption{Optimal Chandler Production}
-\end{table}
-
-\begin{tabular}{ c c c c }
-
+%\caption{Optimal Chandler Production}
+%\end{table}
+\vspace{5mm}
+\\
+\noindent
+%\begin{table}
+\begin{tabular}{ l c c c }
+\hline
+\multicolumn{4}{|c|}{Optimal Glendale Production} \\
+\hline
+\textbf{Item} & \textbf{Period 1} & \textbf{Period 2} & \textbf{Period 1 Carryover} \\
+Steel Shafts & 0 & 0 & 0 \\
+Graphite Shafts & 100 & 100 & 0 \\
+Iron Heads & 200 & 199 & 1 \\
+Metal Wood Heads & 36 & 30 & 6 \\
+Titanium Insert Wood Heads & 2000 & 1289 & 711 \\
+Set, Steel, Metal Heads & 0 & 0 & 0 \\
+Set, Steel, Titanium Heads & 0 & 0 & 0 \\
+Set, Graphite, Metal Heads & 0 & 0 & 0 \\
+Set, Graphite, Titanium Heads & 0 & 68 & 83\\
 \end{tabular}
-%\caption*{Optimal Chandler Production}
-
-\begin{tabular}{ c c c c }
-
+%\caption{Optimal Glendale Production}
+%\end{table}
+\vspace{5mm}
+\\
+\noindent
+%\begin{table}
+\begin{tabular}{ l c c c }
+\hline
+\multicolumn{4}{|c|}{Optimal Tucson Production} \\
+\hline
+\textbf{Item} & \textbf{Period 1} & \textbf{Period 2} & \textbf{Period 1 Carryover} \\
+Steel Shafts & 1 & 0 & 2 \\
+Graphite Shafts & 431 & 1265 & 2 \\
+Iron Heads & 100 & 0 & 100 \\
+Metal Wood Heads & 339 & 0 & 139 \\
+Titanium Insert Wood Heads & 2000 & 814 & 1186 \\
+Set, Steel, Metal Heads & 0 & 0 & 0 \\
+Set, Steel, Titanium Heads & 0 & 0 & 0 \\
+Set, Graphite, Metal Heads & 0 & 0 & 0 \\
+Set, Graphite, Titanium Heads & 0 & 92 & 92\\
 \end{tabular}
-%\caption*{Optimal Chandler Production}
+%\caption{Optimal Tucson Production}
+%\end{table}
+\\
+\\
+\vspace{5mm}
+\\
+
+This optimal production scenario generates a maximized profit of \$940,366 for Golf-Sport as a company in the two month period.
+
 \section{Further Analysis}
+\subsection{Practicality Constraints}
+Add in more practical minimums to develop a more realistic solution
+\subsection{Range Sensitivity}
 Conduct range sensitivity, examine extra problems in case study
 \section{Conclusions \& Implications}
 \subsection{Mathematical Approach}

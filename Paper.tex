@@ -9,11 +9,21 @@
 	\newpage
 	\pagenumbering{arabic}
 \section{Introduction}
-This problem examines a manufacturing optimization case........
-\section{Background and Prior Work}
- We can evaluate solutions of similar problems
+This problem examines a manufacturing optimization case, in which a company is looking to create an optimal two-month business plan.  This particular problem appears to lend itself to integer programming as the ideal optimization method.
+\subsection{Background \& Prior Work}
+Optimizing profit through production in processes is studied within the realm of the operations management.  As the global market continues to grow and expand, businesses are focusing on remaining competitive.  In a survey of 
+optimization techniques being used within operations management, the authors broken the process into three distinct parts.  These can be identified as input management, facilities management, and output management.  Stated more simply, these correspond to 
+scheduling, production, and vehicle routing, respectively.  This Golf-Sport problem falls squarely within the facilities management/production sector.  The authors discovered that for large-scale production optimizations, heuristics were necessarily utilized.  
+Additionally, the most common solution approaches utilize branch-and-cut or branch-and-price \cite{survey}.
+\par
+Several approaches for operations management use genetic algorithms, especially when focusing on lot sizing within material requirements, aggregate and assortment planning, and facility layout problems \cite{gen}.  
+Additionally, particle swarm optimization methods have been successfully implemented into operations research problems.  Nearchou expands on this by stating that "A possible reason for this absence is that, PSO was introduced as global optimizer over continuous spaces, while a large set of POM problems are of combinatorial nature with discrete decision variables" \cite{and}.  In short, he is declaring that the large scale nature of such production problems are indeed appropriate for PSO algorithms.  
+While this problem is not large enough to necessitate utilizing such algorithms (a global optimal solution can be determined through linear programming), these implementations are interesting approaches.
+\par
+Generally speaking, many optimization problems can be converted into a linear programming model.  The drawback to this, however, can be extremely long and computationally expensive runtimes, depending on the solution space.  Klotz and Newman conducted research into this, and 
+while they concluded that many operations management/production problems can be solved using linear programming, it may not be the best approach.  However, by adjusting settings and parameters in software-based solvers, many large-scale problems can be effectively solved in this way \cite{klotz}. 
 \section{Description of Problem}
-Golf-Sport is a golfclub manufacturing company with three plants in Arizona.  Each plant has an attached retail store and is treated as its
+Golf-Sport is a golf club manufacturing company with three plants in Arizona.  Each plant has an attached retail store and is treated as its
 only supplier.  Each location has predicted minimum and maximum sales of each item type per period.  The goal of this optimization is to maximize profit over a two-month period by determining the optimal number of each product to make
 at each location.  In this problem, two types of constraints exist:  local \& global.  Local constraints are unique to each plant/store
  combination, while the global constraints refer to company-wide resources.  Initially, the problem will be modeled and optimized adhering stictly to the provided constraints and bounds.
@@ -36,6 +46,7 @@ it appears reasonable to incorporate the possibility of carryover of graphite st
 \hline
 \textit{x} & Production of Product \textit{i} in Period \textit{j} \\
 \textit{e} & Graphite Stock Carryover \\
+\hline
 \end{tabular}
 \vspace{5mm}
 
@@ -53,6 +64,7 @@ it appears reasonable to incorporate the possibility of carryover of graphite st
 \textit{u} & Set, Steel Shafts, Insert Heads \\
 \textit{y} & Set, Graphite Shafts, Metal Heads \\
 \textit{z} & Set, Graphite Shafts, Insert Heads \\
+\hline
 \end{tabular}
 \vspace{5mm}
 \\
@@ -60,13 +72,14 @@ it appears reasonable to incorporate the possibility of carryover of graphite st
 \hline
 \textbf{Index \textit{j}} & \textbf{Period Description} \\
 \hline
-\textit{1} & Produced \& Sold in Period 1 \\
-\textit{2} & Produced \& Sold in Period 2 \\
-\textit{3} & Produced in Period 1 \& Sold in Period 2 \\
+1 & Produced \& Sold in Period 1 \\
+2 & Produced \& Sold in Period 2 \\
+3 & Produced in Period 1 \& Sold in Period 2 \\
+\hline
 \end{tabular}
 
 \subsection{Objective}
-The objective of this model is to maximize profit, represented as the difference between sales revenue and cost.  For the purposes of this function let \textit{R, C \& I} represent revenue, cost, and inventory cost, respectively.  The function can be expressed as:
+The objective of this model is to maximize profit, represented as the difference between sales revenue and cost.  For the purposes of this function let \textit{R, C \& I} represent revenue, product cost, and inventory cost, respectively.  The function can be expressed as:
 %align functions to the left
 
 $$f(x) = \sum_{j=1}^{3}Rx_{i} - \sum_{j=1}^{3}Cx_{i} - \sum Ix_{i,3} $$
@@ -130,19 +143,15 @@ period 2 are within that month's demand bounds.  Constraints 13 \& 14 further bo
 \section{Implementation}
 \subsection{Hardware \& Software}
 The problem was coded and solved in MATLAB R2017b on a personal computer.  The code does not appear to be backward-compatible due to the use of the \textit{optimproblem} implementation.  The small scale of this optimization does not necessitate a computer beyond average specifications.
-\subsection{Coding}
-%Maybe insert a page of pseudocode here???????
-Code
 \subsection{Algorithm}
 This problem was solved using the \textit{intlinprog} function in MATLAB.  This function conducts a linear relaxation on the problem, in order to set the upper bound.  Then, the algorithm iterates through a branch-and-cut approach to solve for the optimal integer solution.  By default, the function 
-will iterate through 1,000,000 iterations prior to terminating.  Additionally, the function applies basic heuristics in the form of Gomory cuts.  Gomory cuts are an added constraint along a hyperplane to a vertex.  They are 
-commonly implemented in most commercial integer programming solvers as an initial heuristic.  In optimization software implementations, these cuts tend to be accurate overall and invalid cuts are rarely made \cite{gomory}.
+will iterate through 1,000,000 iterations prior to terminating.  These iterations check the feasible solutions at the nodes along the tree created through branch-and-bound.  Additionally, the function applies basic heuristics in the form of Gomory cuts.  Gomory cuts are defined as an added constraint along a hyperplane to a vertex.  They are commonly implemented in most commercial integer programming solvers as an initial heuristic.  In optimization software implementations, these cuts tend to be accurate overall and invalid cuts are rarely made \cite{gomory}.  Given this knowledge, it is safe to assume that these cuts will not negatively affect the solution to this problem.
 
 \section{Solution}
 The model was successfully optimized to the same solution over several runs, yielding the following optimal solution with constraints as laid out in the original problem above:
 \\
 \noindent
-%\begin{table)
+%begin{table}
 \begin{tabular}{ l c c c }
 \hline
 \multicolumn{4}{|c|}{Optimal Chandler Production} \\
@@ -158,12 +167,11 @@ Set, Steel, Titanium Heads & 0 & 0 & 0 \\
 Set, Graphite, Metal Heads & 0 & 0 & 0 \\
 Set, Graphite, Titanium Heads & 0 & 35 & 84\\
 \end{tabular}
-%\caption{Optimal Chandler Production}
-%\end{table}
+%end{table} dont remove
 \vspace{5mm}
 \\
 \noindent
-%\begin{table}
+%begin{table}
 \begin{tabular}{ l c c c }
 \hline
 \multicolumn{4}{|c|}{Optimal Glendale Production} \\
@@ -179,12 +187,11 @@ Set, Steel, Titanium Heads & 0 & 0 & 0 \\
 Set, Graphite, Metal Heads & 0 & 0 & 0 \\
 Set, Graphite, Titanium Heads & 0 & 68 & 83\\
 \end{tabular}
-%\caption{Optimal Glendale Production}
-%\end{table}
+%end{table} dont remove
 \vspace{5mm}
 \\
 \noindent
-%\begin{table}
+%begin{table}
 \begin{tabular}{ l c c c }
 \hline
 \multicolumn{4}{|c|}{Optimal Tucson Production} \\
@@ -200,30 +207,55 @@ Set, Steel, Titanium Heads & 0 & 0 & 0 \\
 Set, Graphite, Metal Heads & 0 & 0 & 0 \\
 Set, Graphite, Titanium Heads & 0 & 92 & 92\\
 \end{tabular}
-%\caption{Optimal Tucson Production}
-%\end{table}
+%end{table} dont remove
 \\
 \\
 \vspace{5mm}
 \\
 
-This optimal production scenario generates a maximized profit of \$940,366 for Golf-Sport as a company in the two month period.
+This optimal production scenario generates a maximized profit of \$940,366 for Golf-Sport as a company in the two month period.  The linear relaxation yielded a global optimal profit of \$941,110, so this 
+IP solution is valid (does not violate the Representation Theorem).  The problem does not provide a current company profit, so it is not known how much of an increase in potential profit this soution would yield.  
 
 \section{Further Analysis}
+The initial model and code provides a valid, optimal solution.  Here, the problem will be expanded upon further in two separate directions:
+\par
+While the original analysis and model provides a valid optimal integer solution for the profit function, the actual production plan does not appear very practical for a business.  
+The existing parameters seem to not account for maintaining a workforce; the lower bounds are set too low.  This analysis will adjust some of these parameters and constraints to produce a more 
+actionable business plan.
+\par
+Second, the problem will be analyzed and adjusted to explore several range sensitivity topics.  This can help direct the business' focus and direction in order to further maximize profit potential.  Specifically, advertising dollars and graphite stock range sensitivity will be explored.
+
 \subsection{Practicality Constraints}
 Add in more practical minimums to develop a more realistic solution
 \subsection{Range Sensitivity}
 Conduct range sensitivity, examine extra problems in case study
 \section{Conclusions \& Implications}
 \subsection{Mathematical Approach}
-Evaluate our approach, suggest changes in future.  EFFICIENCY
+Evaluate our approach, suggest changes in future.
 \subsection{Company Approach}
 Discuss optimized solution, range sensitivity, business suggestions
 	\newpage
 	\pagenumbering{gobble}
-	\begin{thebibliography}{9}
+	\begin{thebibliography}{5}
+	
+\bibitem{survey}
+Fei, Hongying, et al. (2017). A Survey of Recent Research on Optimization Models and Algorithms for Operations Management from the Process View. 
+\textit{Scientific Programming, 2017}(2017), pp. 1-19.
+	
+\bibitem{gen}
+Aytug, H. et al. (2003). Use of Genetic Algorithms to Solve Production and Operations Management Problems: A Review. 
+\textit{International Journal of Production Research, 41}(17), pp. 3955-4009.
+
+\bibitem{and}
+Nearchou, Andreas C. (2011). Maximizing Production Rate and Workload Smoothing in Assembly Lines Using Particle Swarm Optimization. 
+\textit{International Journal of Production Economics, 129}(2), pp. 242-250.
+
+\bibitem{klotz}
+Klotz, Ed, and Alexandra M. Newman. (2013). Practical Guidelines for Solving Difficult Linear Programs. 
+\textit{Practical Guidelines for Solving Difficult Linear Programs, 18}(1-2), pp. 1-17.
+
 \bibitem{gomory}
-G\'{e}rard Cornu\'{e}jols, Fran\c{c}ois Margot, \& Giacomo Nannicini. (2013). On the safety of Gomory cut generators. 
+G\'{e}rard Cornu\'{e}jols, Fran\c{c}ois Margot, \& Giacomo Nannicini. (2013). On the Safety of Gomory Cut Generators. 
 \textit{Mathematical Programming Computation, 5}(4), pp. 345-395.
 
 

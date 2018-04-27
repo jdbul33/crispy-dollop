@@ -9,7 +9,8 @@
 	\newpage
 	\pagenumbering{arabic}
 \section{Introduction}
-This problem examines a manufacturing optimization case, in which a company is looking to create an optimal two-month business plan.  This particular problem appears to lend itself to integer programming as the ideal optimization method.
+This problem examines a manufacturing optimization case, in which a company is looking to create an optimal two-month business plan.  The case study seeks to develop a production plan that will optimize profit over this production period.  
+The two-month period is set, with no information given as to the going concern of this company.  This two-month optimization can serve as a baseline, and could later be expanded to more periods if desired.  This particular problem appears to lend itself to integer programming as the ideal optimization method.  The problem will be coded and solved using MATLAB's optimization toolbox functionality.
 \subsection{Background \& Prior Work}
 Optimizing profit through production in processes is studied within the realm of the operations management.  As the global market continues to grow and expand, businesses are focusing on remaining competitive.  In a survey of 
 optimization techniques being used within operations management, the authors broken the process into three distinct parts.  These can be identified as input management, facilities management, and output management.  Stated more simply, these correspond to 
@@ -17,7 +18,7 @@ scheduling, production, and vehicle routing, respectively.  This Golf-Sport prob
 Additionally, the most common solution approaches utilize branch-and-cut or branch-and-price \cite{survey}.
 \par
 Several approaches for operations management use genetic algorithms, especially when focusing on lot sizing within material requirements, aggregate and assortment planning, and facility layout problems \cite{gen}.  
-Additionally, particle swarm optimization methods have been successfully implemented into operations research problems.  Nearchou expands on this by stating that "A possible reason for this absence is that, PSO was introduced as global optimizer over continuous spaces, while a large set of POM problems are of combinatorial nature with discrete decision variables" \cite{and}.  In short, he is declaring that the large scale nature of such production problems are indeed appropriate for PSO algorithms.  
+Additionally, particle swarm optimization methods have been successfully implemented into operations research problems.  Nearchou expands on this by stating that ``A possible reason for this absence is that, PSO was introduced as global optimizer over continuous spaces, while a large set of POM problems are of combinatorial nature with discrete decision variables" \cite{and}.  In short, he is declaring that the large scale nature of such production problems are indeed appropriate for PSO algorithms.  
 While this problem is not large enough to necessitate utilizing such algorithms (a global optimal solution can be determined through linear programming), these implementations are interesting approaches.
 \par
 Generally speaking, many optimization problems can be converted into a linear programming model.  The drawback to this, however, can be extremely long and computationally expensive runtimes, depending on the solution space.  Klotz and Newman conducted research into this, and 
@@ -217,14 +218,14 @@ This optimal production scenario generates a maximized profit of \$940,366 for G
 IP solution is valid (does not violate the Representation Theorem).  The problem does not provide a current company profit, so it is not known how much of an increase in potential profit this soution would yield.  
 
 \section{Further Analysis}
-The initial model and code provides a valid, optimal solution.  Here, the problem will be expanded upon further in two separate directions:
+The initial model and code provides a valid, optimal solution.  While the solution is valid, there are several other points to be addressed to create a more meaningful model.  Hence, the problem will be expanded upon further in two separate directions.
 \par
-While the original analysis and model provides a valid optimal integer solution for the profit function, the actual production plan does not appear very practical for a business.  
+First, while the original analysis and model provides a valid optimal integer solution for the profit function, the actual production plan does not appear very practical for a business.  
 The existing parameters seem to not account for maintaining a workforce; the lower bounds are set too low.  This analysis will adjust some of these parameters and constraints to produce a more 
 actionable business plan.
 \par
-Second, the problem will be analyzed and adjusted to explore several range sensitivity topics.  This can help direct the business' focus and direction in order to further maximize profit potential.  Specifically, advertising dollars and graphite stock range sensitivity will be explored.
-
+Second, the problem will be analyzed and adjusted to explore several range sensitivity topics.  This can help direct the business' focus and direction in order to further maximize profit potential.  Specifically, advertising dollars and graphite stock range sensitivity will be explored.  These are both areas in which Golf-Sport has considered contributing extra resources.  Additionally, a proposed advertising plan 
+that could potentially double the maximum demand will be explored within current model parameters.
 \section{Added Practicality Constraints}
 Add in more practical minimums to develop a more realistic solution %needs finished
 \section{Range Sensitivity}
@@ -232,12 +233,14 @@ Range sensitivity and resource increases were examined in regards to this proble
 will be examined independently, using the initial mathematical model as the basis.
 \subsection{Advertising Budget v. Graphite Supply}
 The case study of the Golf-Sport problem presents a situation:  which would be more beneficial for the company, more monthly advertising budget or more graphite stock?  Since an amount of increase was not given, the situation was modeled with double the resources in the original problem.  
-This allowed for a \$40,000 monthly advertising budget or a 2,000 pound monthly graphite stock.  As was the case before, advertising budget did not carry over to the next period, but graphite stock was assumed to.\par
+This allowed for a \$40,000 monthly advertising budget or a 2,000 pound monthly graphite stock.  As was the case before, advertising budget did not carry over to the next period, but graphite stock was assumed to.
+\par
 These new parameters were incorporated separately into two different runs of the model.  Graphite was determined to be the more valuable resource, as it increases the maximum profit to \$968,831.  This profit potential is notably larger than the baseline of \$940,366 and the increased advertising 
-profit of \$940,110.  This should help show Golf-Sport the importance of graphite to the operation, and perhaps motivate the company to obtain more graphite stock.
+profit of \$940,110.  This should help show Golf-Sport the importance of graphite to the operation, as it is a limiting factor on current profit.  It should be noted that when graphite is doubled in this case, excess stock exists at the end of the two-month period.  This suggests that with current demand and constraints, obtaining more than 2,000 pounds of graphite stock per month is unnecessary, 
+as it will not increase profit beyond this point.
 \subsection{Doubling the Demand}
-The Golf-Sport case study also proposes an interesting change:  if max demand were to double, would the company be able to benenfit and maximize their profit while utilizing the current production system as originally described?  The model was adjusted to account for a hypoethetical doubling of maximum demand while maintaining all of the original constraints as set forth in the model.  
-Using this modified model, an integer solution was found.  The objective value (maximum profit) is optimized at \$998,330.  This is approximately a \$48,000 greater profit than the original demands yielded.  This shows that the model does benefit from the increased demands.
+The Golf-Sport case study also proposes an interesting change:  if maximum demand were to double, would the company be able to benenfit and maximize their profit while utilizing the current production system as originally described?  The model was adjusted to account for a hypoethetical doubling of maximum demand while maintaining all of the original constraints as set forth in the model.  
+Using this modified model, an integer solution was found.  The objective value (maximum profit) is optimized at \$998,330.  This is approximately a \$48,000 greater profit than the original demands yielded.  This shows that the model does benefit from the increased demand.
 \par
 Here to discuss slack %discuss slack and see which constraints are maxed out
 \section{Conclusions \& Implications}
@@ -245,6 +248,9 @@ Here to discuss slack %discuss slack and see which constraints are maxed out
 Evaluate our approach, suggest changes in future.
 \subsection{Company Approach}
 Discuss optimized solution, range sensitivity, business suggestions
+
+
+
 	\newpage
 	\pagenumbering{gobble}
 	\begin{thebibliography}{5}

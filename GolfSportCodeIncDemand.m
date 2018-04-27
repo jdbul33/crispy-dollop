@@ -207,7 +207,7 @@ prob.Constraints.cons29 = z('C2')+z('C3') <= 600;
 
 %Glendale Period 2 Sales Bounds
 prob.Constraints.cons30 = s('G2')+s('G3') <= 3000;
-prob.Constraints.cons31 = g('G2')+g('G3') <=3000;
+prob.Constraints.cons31 = g('G2')+g('G3') <= 3000;
 prob.Constraints.cons32 = g('G2')+g('G3') >= 100;
 prob.Constraints.cons33 = i('G2')+i('G3') <= 3000;
 prob.Constraints.cons34 = i('G2')+i('G3') >= 200;

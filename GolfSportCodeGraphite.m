@@ -14,6 +14,7 @@ x = optimvar('x',vars,'lowerbound',0,'type','integer');
 y = optimvar('y',vars,'lowerbound',0,'type','integer');
 z = optimvar('z',vars,'lowerbound',0,'type','integer');
 e = optimvar('e','lowerbound',0);
+p = optimvar('p','lowerbound',0);
 
 
 % set each product's minimal and maximal by plant only upper bounds for period 1
@@ -188,7 +189,7 @@ prob.Constraints.cons15 = 0.25*(g('C1')+g('C3')+g('G1')+g('G3')+g('T1')+g('T3'))
 
 %Period 2 Graphite
 prob.Constraints.cons16 = 0.25*(g('C1')+g('G2')+g('T2'))+3.25*(y('C2')+z('C2')...
-	+y('G2')+z('G2')+y('T2')+z('T2')) <= (2000+e);
+	+y('G2')+z('G2')+y('T2')+z('T2')) + p == (2000+e);
 
 %Chandler Period 2 Sales Bounds
 prob.Constraints.cons17 = s('C2')+s('C3') <= 2000;

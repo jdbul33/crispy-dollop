@@ -227,7 +227,90 @@ actionable business plan.
 Second, the problem will be analyzed and adjusted to explore several range sensitivity topics.  This can help direct the business' focus and direction in order to further maximize profit potential.  Specifically, advertising dollars and graphite stock range sensitivity will be explored.  These are both areas in which Golf-Sport has considered contributing extra resources.  Additionally, a proposed advertising plan 
 that could potentially double the maximum demand will be explored within current model parameters.
 \section{Added Practicality Constraints}
-Add in more practical minimums to develop a more realistic solution %needs finished
+\subsection{Modifications to Existing Model}
+Upon further examination and analysis of the model \& results, the current parameters do not appear to be as complete as possible.  While it exists only as a case study, several further parameters will be added in order to present a more realistic model and solution.  The added parameters will include:
+\begin{itemize}
+	\item Addition of minimum labor constraints
+	\item Addition of basic start-up cost constraints
+	\item Increasing of minimum demand for items with currently a zero minimum
+	\item Marginal increase in per-item revenue for period two to help offset for cost increases
+	\item Incorporate parameters to reflect items lost in quality control checks
+\end{itemize}
+The addition of these parameters is necessary to model a more complete production problem.  First, the current model yields very uneven production amounts between periods.  While perhaps optimal, it would be unrealistic to recommend that a company lay off its workers if unnecessary.  Therefore, labor minimums will be set to 25\% of the current maximums.  Second, 
+any production facility will incur fixed costs per month, regardless of production.  This will be modeled as:
+$$ z_{ij} = F_{i}, z\in {0,1} $$
+This start-up operating cost will be modeled as \$7,500 per plant per period.  While the model will include this as a binary equation, it will effectively always be included due to the minimum labor constraints.  The addition of the binary constraint, however, allows for ease of possible analysis without minimum production.
+\par
+Next, the minimum for items with a current minimum demand of zero will be increased to 5\% of the current maximum demand.  For retail store purposes, even items with underwhelming sales should be stocked on the store shelves.  By increasing this minimum demand slightly, it will ensure that each location produces a full catalog of items.  
+Additionally, the increase in cost and inventory carryover cost is not currently reflected in item revenue for the second month.  As costs increases significantly, at least some of that cost should be passed along to the customer.  Therefore, the modifed model will include a 6\% revenue (price) increase per item for the second month.
+\par
+Lastly, in any production setting, items are lost to defects and quality control audits.  Six Sigma production guidelines set a goal of 3.4 defects per million items.  For the purposes of this model, it will be assumed that Golf-Sport is far from the Six Sigma efficiency levels.  To reflect this, Golf-Sports total revenue formula will be adjusted to 99.5\% to account for items lost due to defects.
+\subsection{Modifed Solution}
+After factoring in these additional constraints, the problem was optimized to yield \$xxxxxx in profit from the following production scheme:
+\\
+\noindent
+%begin{table}
+\begin{tabular}{ l c c c }
+\hline
+\multicolumn{4}{|c|}{Optimal Modified Chandler Production} \\
+\hline
+\textbf{Item} & \textbf{Period 1} & \textbf{Period 2} & \textbf{Period 1 Carryover} \\
+Steel Shafts & 0 & 0 & 251 \\
+Graphite Shafts & 100 & 2000 & 0 \\
+Iron Heads & 200 & 0 & 200 \\
+Metal Wood Heads & 35 & 1 & 30 \\
+Titanium Insert Wood Heads & 2000 & 1299 & 701 \\
+Set, Steel, Metal Heads & 0 & 0 & 0 \\
+Set, Steel, Titanium Heads & 0 & 0 & 0 \\
+Set, Graphite, Metal Heads & 0 & 0 & 0 \\
+Set, Graphite, Titanium Heads & 0 & 35 & 84\\
+\end{tabular}
+%end{table} dont remove
+\vspace{5mm}
+\\
+\noindent
+%begin{table}
+\begin{tabular}{ l c c c }
+\hline
+\multicolumn{4}{|c|}{Optimal Modified Glendale Production} \\
+\hline
+\textbf{Item} & \textbf{Period 1} & \textbf{Period 2} & \textbf{Period 1 Carryover} \\
+Steel Shafts & 0 & 0 & 0 \\
+Graphite Shafts & 100 & 100 & 0 \\
+Iron Heads & 200 & 199 & 1 \\
+Metal Wood Heads & 36 & 30 & 6 \\
+Titanium Insert Wood Heads & 2000 & 1289 & 711 \\
+Set, Steel, Metal Heads & 0 & 0 & 0 \\
+Set, Steel, Titanium Heads & 0 & 0 & 0 \\
+Set, Graphite, Metal Heads & 0 & 0 & 0 \\
+Set, Graphite, Titanium Heads & 0 & 68 & 83\\
+\end{tabular}
+%end{table} dont remove
+\vspace{5mm}
+\\
+\noindent
+%begin{table}
+\begin{tabular}{ l c c c }
+\hline
+\multicolumn{4}{|c|}{Optimal Modified Tucson Production} \\
+\hline
+\textbf{Item} & \textbf{Period 1} & \textbf{Period 2} & \textbf{Period 1 Carryover} \\
+Steel Shafts & 1 & 0 & 2 \\
+Graphite Shafts & 431 & 1265 & 2 \\
+Iron Heads & 100 & 0 & 100 \\
+Metal Wood Heads & 339 & 0 & 139 \\
+Titanium Insert Wood Heads & 2000 & 814 & 1186 \\
+Set, Steel, Metal Heads & 0 & 0 & 0 \\
+Set, Steel, Titanium Heads & 0 & 0 & 0 \\
+Set, Graphite, Metal Heads & 0 & 0 & 0 \\
+Set, Graphite, Titanium Heads & 0 & 92 & 92\\
+\end{tabular}
+%end{table} dont remove
+\\
+\\
+\vspace{5mm}
+\\
+
 \section{Range Sensitivity}
 Range sensitivity and resource increases were examined in regards to this problem.  The two main points of focus (as supplied by the case study) are a hypothetical increase in total maximum demand and proposed increases in advertising or graphite budget.  Both of these situations 
 will be examined independently, using the initial mathematical model as the basis.
@@ -241,8 +324,7 @@ as it will not increase profit beyond this point.
 \subsection{Doubling the Demand}
 The Golf-Sport case study also proposes an interesting change:  if maximum demand were to double, would the company be able to benenfit and maximize their profit while utilizing the current production system as originally described?  The model was adjusted to account for a hypoethetical doubling of maximum demand while maintaining all of the original constraints as set forth in the model.  
 Using this modified model, an integer solution was found.  The objective value (maximum profit) is optimized at \$998,330.  This is approximately a \$48,000 greater profit than the original demands yielded.  This shows that the model does benefit from the increased demand.
-\par
-Here to discuss slack %discuss slack and see which constraints are maxed out
+
 \section{Conclusions \& Implications}
 \subsection{Mathematical Approach}
 Evaluate our approach, suggest changes in future.
@@ -267,8 +349,7 @@ Aytug, H. et al. (2003). Use of Genetic Algorithms to Solve Production and Opera
 Nearchou, Andreas C. (2011). Maximizing Production Rate and Workload Smoothing in Assembly Lines Using Particle Swarm Optimization. 
 \textit{International Journal of Production Economics, 129}(2), pp. 242-250.
 
-\bibitem{klotz}
-Klotz, Ed, and Alexandra M. Newman. (2013). Practical Guidelines for Solving Difficult Linear Programs. 
+\bibitem{klotz}Klotz, Ed, and Alexandra M. Newman. (2013). Practical Guidelines for Solving Difficult Linear Programs. 
 \textit{Practical Guidelines for Solving Difficult Linear Programs, 18}(1-2), pp. 1-17.
 
 \bibitem{gomory}

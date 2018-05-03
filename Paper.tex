@@ -10,27 +10,36 @@
 	\pagenumbering{arabic}
 \section{Introduction \& Background}
 \subsection{Operations Research \& Optimization}
-Optimizing profit through production in processes is studied within the realm of the operations management. As the global market continues to grow and expand, businesses are focusing on remaining competitive. Erik Johannesson and Christian Karsten explain this best. ``Large organizations face thousands of planning problems every day. Some are simple, and decisions can be made quickly and efficiently by a single person. Others are on a different, larger scale which require much more effort, and they may also have a significant impact on the bottom line.  All of these decisions are interlinked, with the overall objective being to meet customer demand at the lowest overall cost” .\cite{johan}
+Optimizing profit through production in processes is studied within the realm of operations management. As the global market continues to grow and expand, businesses are focusing on remaining competitive. Erik Johannesson and Christian Karsten explain this best. ``Large organizations face thousands of planning problems every day. Some are simple, and decisions can be made quickly and efficiently by a single person. Others are on a different, larger scale which require much more effort, and they may also have a significant impact on the bottom line.  All of these decisions are interlinked, with the overall objective being to meet customer demand at the lowest overall cost."\cite{johan}
 \par
-In a survey of optimization techniques being used within operations management, the authors broken the process into three distinct parts. These can be identified as input management, facilities management, and output management. Stated more simply, these correspond to scheduling, production, and vehicle routing, respectively. Failure to optimize any one of these areas can lead large inefficiencies (i.e. lost revenue) for a company. Making too much of one product leads to inventory costs. Failure to plan good routes leads to higher shipping costs. Not spending enough on advertising leads to missed opportunities. Johnannesson and Karsten go on to say, ``As such problems often have a large scale, the impact can be significant. For example, it is not uncommon to be able to decrease logistics spending by 5 to 10 percent in a supply chain with annual logistics costs of over \$100 million. 
-Additionally, it can reduce the planning time from days to minutes. Thus, evaluation of multiple scenarios becomes feasible, and an automated decision-support tool may serve as an integral part of both operational and strategic decision making.”\cite{johan}  
+In a survey of optimization techniques being used within operations management, the authors have broken the process into three distinct parts. These can be identified as input management, facilities management, and output management. Stated more simply, these correspond to scheduling, production, and vehicle routing, respectively. Failure to optimize any one of these areas can lead large inefficiencies (i.e. lost revenue) for a company. Making too much of one product leads to inventory costs, failure to plan good routes leads to higher shipping costs, and not spending enough on advertising leads to missed opportunities and subpar performance. Johnannesson and Karsten go on to say, ``As such problems often have a large scale, the impact can be significant. For example, it is not uncommon to be able to decrease logistics spending by 5 to 10 percent in a supply chain with annual logistics costs of over \$100 million. 
+Additionally, it can reduce the planning time from days to minutes. Thus, evaluation of multiple scenarios becomes feasible, and an automated decision-support tool may serve as an integral part of both operational and strategic decision making."\cite{johan}  
 \subsection{Prior Work}
-Optimizing profit through production in processes is studied within the realm of the operations management.  As the global market continues to grow and expand, businesses are focusing on remaining competitive.  In a survey of 
-optimization techniques being used within operations management, the authors broken the process into three distinct parts.  These can be identified as input management, facilities management, and output management.  Stated more simply, these correspond to 
-scheduling, production, and vehicle routing, respectively.  
-\par
-Clearly there is a need for operations management to be optimized, especially as a business or problem grows more complex. Several approaches for operations management use genetic algorithms, especially when focusing on lot sizing within material requirements, aggregate and assortment planning, and facility layout problems \cite{gen}.  
+There is a clear need for operations management to be optimized, especially as a business or problem grows more complex. Several approaches for operations management use genetic algorithms, especially when focusing on lot sizing within material requirements, aggregate and assortment planning, and facility layout problems \cite{gen}.  
 Additionally, particle swarm optimization methods have been successfully implemented into operations research problems.  Nearchou expands on this by stating that ``A possible reason for this absence is that, PSO was introduced as global optimizer over continuous spaces, while a large set of POM problems are of combinatorial nature with discrete decision variables" \cite{and}.  In short, he is declaring that the large scale nature of such production problems are indeed appropriate for PSO algorithms.  
 While this problem is not large enough to necessitate utilizing such algorithms (a global optimal solution can be determined through linear programming), these implementations are interesting approaches.
 \par
-Generally speaking, many optimization problems can be converted into a linear programming model.  The drawback to this, however, can be extremely long and computationally expensive runtimes, depending on the solution space.  Klotz and Newman conducted research into this, and 
-while they concluded that many operations management/production problems can be solved using linear programming, it may not be the best approach.  However, by adjusting settings and parameters in software-based solvers, many large-scale problems can be effectively solved in this way \cite{klotz}.  This Golf-Sport problem falls squarely within the facilities management/production sector.  Fei et al discovered that for large-scale production optimizations, heuristics were necessarily utilized.  Additionally, the most common solution approaches utilize branch-and-cut or branch-and-price \cite{survey}.
+Generally speaking, many optimization problems can be converted into a linear programming model.  The drawback to this, however, can be extremely long and have computationally expensive runtimes, depending on the solution space.  Klotz and Newman conducted research into this, and 
+while they concluded that many operations management/production problems can be solved using linear programming, it may not always be the best approach.  However, by adjusting settings and parameters in software-based solvers, many large-scale problems can be effectively solved in this way \cite{klotz}.  This Golf-Sport problem falls squarely within the facilities management/production sector.  Fei et al discovered that for large-scale production optimizations, heuristics were necessarily utilized.  Additionally, the most common solution approaches utilize branch-and-cut or branch-and-price \cite{survey}.
 \section{Description of Problem}
-Golf-Sport is a golf club manufacturing company with three plants in Arizona.  Each plant has an attached retail store and is treated as its
-only supplier.  Each location has predicted minimum and maximum sales of each item type per period.  The goal of this optimization is to maximize profit over a two-month period by determining the optimal number of each product to make
-at each location.  The solution will presented as three periods: (1) manufactured and sold in month one; (2) manufactured and sold in month two; and (3) manufactured in month one and sold in month two.  In this problem, two types of constraints exist:  local and global.  Local constraints are unique to each plant/store
- combination, while the global constraints refer to company-wide resources.  Initially, the problem will be modeled and optimized adhering strictly to the provided constraints and bounds.  The two-month period is set, with no information given as to the going concern of this company.  This two-month optimization can serve as a baseline, and could later be expanded to more periods if desired.  
- This particular problem appears to lend itself to integer programming as the ideal optimization method.  The problem will be coded and solved using MATLAB's optimization toolbox functionality.
+Golf-Sport is a small-sized company that produces high-quality components for people who build their own golf clubs and prebuilt sets of clubs. There are five components—steel shafts, graphite shafts, forged iron heads, metal wood heads, and metal wood heads with titanium inserts—made in three plants—Chandler, Glendale, and Tucson—in the Golf-Sport system. Each plant can produce any of the components, although each plant has a different set of individual constraints and unit costs. These constraints cover labor and packaging machine time (the machine is used by all components). Note that even though the components are identical in the three plants, different production processes are used, and therefore the products use different amounts of resources in different plants.
+\par
+Besides component sales, the company takes the components and manufactures sets of golf clubs. Each set requires 13 shafts, 10 iron heads, and 3 wood heads. All of the shafts in a set must be the same type (steel or graphite), and all of the wood heads must be the same type (metal or metal with inserts). Each plant has unique assembly times.
+\par
+Each plant of Golf-Sport has a retail outlet to sell components and sets, and the specific plant is the only supplier for its retail outlet. The minimum and maximum amounts of demand for each plant–product pair are unique. Note that, although the minimums must be satisfied, you do not need to satisfy demand up to the maximum amount.
+\par
+This planning problem is for two months. The material, production, and assembly costs increase by 12\% for the second month, and production times are stationary. Inventory costs are based on end-of-period inventory for each product set and cost out at 8\% of the cost values of material, production and assembly. Additionally, each product generates different revenue depending on where it is made. Initially, there is no inventory.
+\par
+The corporation controls the capital available or expenses; the cash requirements for each product are given. There is a total of \$20,000 available for advertising for the entire system during each month, and any money not spent in a month is not available the next month. The corporation also controls graphite. Each shaft requires 4 ounces of graphite; a total of 1,000 pounds is available for each of the two months. 
+\par
+The goal is to determine a recommendation for the company. A recommendation includes a plan for production and sales. Additionally, the following sensitivity-analysis issues were explored:
+\begin{itemize}
+	\item How can the problem be modeled to present a more complete picture of a manufacturer’s operations?
+	\item How does more advertising budget or graphite affect the outcome?
+	\item 	Marketing is trying to get Golf-Sport to consider an advertising program that promises a 50\% increase in their maximum demand. Can the 		current system be utilized to increase profit with this new scheme?
+\end{itemize}
+\par
+The solution will presented as three options for production and sales: (1) manufactured and sold in month one; (2) manufactured and sold in month two; and (3) manufactured in month one and sold in month two. In this problem, two types of constraints exist: local and global. This two-month optimization can serve as a baseline and could later be expanded to more periods if desired. This particular problem appears to lend itself to integer programming as the ideal optimization method. The problem will be coded and solved using MATLAB’s optimization toolbox functionality.
 \section{Mathematical Formulation \& Model}
 This problem is set up as a mixed integer programming problem, with a single objective function to be maximized (representing profit).  
 The decision variables are set to be the production of each product item, indexed by location and period.  In determining the maximum profit given the constraints, 
@@ -41,8 +50,8 @@ going-concern.  The model is constructed to optimize profit over two months, the
 a third month.  By default, the model will not have any inventory left at the end of the second month.  If further information were to arise along with 
 a modeling need for a third month, this could be accomplished by expanding the current model. \par
 The second assumption used is the carryover of graphite stock between months.  Advertising and graphite allotments are companywide in this problem, and 
-it is clearly stated that the amount of money earmarked for advertising each month will not carryover into the next month.  Graphite seems to have no such restriction, so 
-it appears reasonable to incorporate the possibility of carryover of graphite stock.
+it is clearly stated that the amount of money earmarked for advertising each month will not carryover into the next month.  Graphite has no such restriction, so 
+it seems reasonable to incorporate the possibility of carryover of graphite stock.
 \subsection{Variables \& Indices}
 \begin{tabular}{ |c | c| }
 \hline
@@ -83,7 +92,7 @@ it appears reasonable to incorporate the possibility of carryover of graphite st
 \end{tabular}
 
 \subsection{Objective}
-The objective of this model is to maximize profit, represented as the difference between sales revenue and cost.  For the purposes of this function let \textit{R, C \& I} represent revenue, product cost, and inventory cost, respectively.  The function can be expressed as:
+The objective of this model is to maximize profit, represented as the difference between sales revenue and cost.  For the purposes of this function let \textit{R, C} \& \textit{I} represent revenue, product cost, and inventory cost, respectively.  The function can be expressed as:
 %align functions to the left
 
 $$f(x) = \sum_{j=1}^{3}Rx_{i} - \sum_{j=1}^{3}Cx_{i} - \sum Ix_{i,3} $$
@@ -148,8 +157,8 @@ period 2 are within that month's demand bounds.  Constraints 13 \& 14 further bo
 \subsection{Hardware \& Software}
 The problem was coded and solved in MATLAB R2017b on a personal computer.  The code does not appear to be backward-compatible due to the use of the \textit{optimproblem} implementation.  The small scale of this optimization does not necessitate a computer beyond average specifications.
 \subsection{Algorithm}
-This problem was solved using the \textit{intlinprog} function in MATLAB.  This function conducts a linear relaxation on the problem, in order to set the upper bound.  Then, the algorithm iterates through a branch-and-cut approach to solve for the optimal integer solution.  By default, the function 
-will iterate through 1,000,000 iterations prior to terminating.  These iterations check the feasible solutions at the nodes along the tree created through branch-and-bound.  Additionally, the function applies basic heuristics in the form of Gomory cuts.  Gomory cuts are defined as an added constraint along a hyperplane to a vertex.  They are commonly implemented in most commercial integer programming solvers as an initial heuristic.  In optimization software implementations, these cuts tend to be accurate overall and invalid cuts are rarely made \cite{gomory}.  Given this knowledge, it is safe to assume that these cuts will not negatively affect the solution to this problem.
+This problem was solved using the \textit{intlinprog} function in MATLAB.  This function initially conducts a linear relaxation on the problem, in order to set the upper bound.  Then, the algorithm iterates through a branch-and-cut approach to solve for the optimal integer solution.  By default, the function 
+will iterate through 1,000,000 iterations prior to terminating or until the gap tolerance is met.  These iterations check the feasible solutions at the nodes along the tree created through branch-and-bound.  Additionally, the function applies basic heuristics in the form of Gomory cuts.  Gomory cuts are defined as an added constraint along a hyperplane to a vertex.  They are commonly implemented in most commercial integer programming solvers as an initial heuristic.  In optimization software implementations, these cuts tend to be accurate overall and invalid cuts are rarely made \cite{gomory}.  Given this knowledge, it is safe to assume that these cuts will not negatively affect the solution to this problem.
 
 \section{Solution}
 The model was successfully optimized to the same solution over several runs, yielding the following optimal solution with constraints as laid out in the original problem above:
@@ -218,20 +227,20 @@ Set, Graphite, Titanium Heads & 0 & 92 & 92\\
 \\
 
 This optimal production scenario generates a maximized profit of \$940,366 for Golf-Sport as a company in the two month period.  The linear relaxation yielded a global optimal profit of \$941,110, so this 
-IP solution is valid (does not violate the Representation Theorem).  The problem does not provide a current company profit, so it is not known how much of an increase in potential profit this soution would yield.  
+IP solution is valid (because it does not violate the Representation Theorem).  The problem does not provide a current company profit prior to this optimization.  Therefore, it is not known how this production scheme compares to the company's current production and profit.
 
 \section{Further Analysis}
 The initial model and code provides a valid, optimal solution.  While the solution is valid, there are several other points to be addressed to create a more meaningful model.  Hence, the problem will be expanded upon further in two separate directions.
 \par
 First, while the original analysis and model does maximize profit, the actual production plan does not appear very practical for a business.  
-For example, the existing parameters seem to not account for maintaining a workforce and the minimum demand is set too low.  This analysis will adjust some of these parameters and constraints to produce a more 
+For example, the existing parameters seem to not account for maintaining a workforce and the minimum demand is set too low to stock the shelves of a retail outlet.  This analysis will adjust some of these parameters and constraints to produce a more 
 actionable business plan.
 \par
-Second, the problem will be analyzed and adjusted to explore several range sensitivity topics.  This can help direct the business' focus and direction in order to further maximize profit potential.  Specifically, advertising dollars and graphite stock range sensitivity will be explored.  These are both areas in which Golf-Sport has considered contributing extra resources.  Additionally, a proposed advertising plan 
+Secondly, the problem will be analyzed and adjusted to explore several range sensitivity topics.  This can help direct the business' focus and direction in order to further maximize profit potential.  Specifically, advertising dollars and graphite stock range sensitivity will be explored.  These are both areas in which Golf-Sport has considered contributing extra resources.  Additionally, a proposed advertising plan 
 that could potentially double the maximum demand will be explored within current model parameters.
 \section{Added Practicality Constraints}
 \subsection{Modifications to Existing Model}
-Upon further examination and analysis of the model \& results, the current parameters do not appear to be as complete as possible.  While it exists only as a case study, several further parameters will be added in order to present a more realistic model and solution.  The added parameters will include:
+Upon further examination and analysis of the model \& results, the current parameters do not appear to be as complete as possible when representing a manufacturing company.  While it exists only as a case study, several further parameters will be added in order to present a more realistic model and solution.  The added parameters will include:
 \begin{itemize}
 	\item Addition of minimum labor constraints
 	\item Addition of basic start-up cost constraints
@@ -239,8 +248,9 @@ Upon further examination and analysis of the model \& results, the current param
 	\item Marginal increase in per-item revenue for period two to help offset for cost increases
 	\item Incorporate parameters to reflect items lost in quality control checks
 \end{itemize}
-The addition of these parameters is necessary to model a more complete production problem.  First, the current model yields very uneven production amounts between periods.  While perhaps optimal, it would be unrealistic to recommend that a company lay off its workers if unnecessary.  Therefore, labor minimums will be set to 25\% of the current maximums.  Second, 
-any production facility will incur fixed costs per month, regardless of production.  This will be included as a constraint:
+The addition of these parameters is necessary to model a more complete production problem.  First, the current model yields very uneven production amounts between periods.  While perhaps optimal, it would be unrealistic to recommend that a company lay off its workers if unnecessary.  Therefore, labor minimums will be set to 25\% of the current maximums.
+\par
+Second, any production facility will incur fixed costs per month, regardless of production.  This will be included as a constraint:
 $$ mz_{j} >= \sum_{i} x_{j}, z\in {0,1} $$
 This start-up operating cost will be modeled as \$7,500 per plant per period.  While the model will include this as a binary equation, it will effectively always be included due to the minimum labor constraints.  The addition of the binary constraint, however, allows for ease of possible analysis without minimum production.  The constant \textit{m} will be set to an arbitrarily high number, so as to not limit any production in error.  Once this constraint is added to the model, the objective function will change to reflect it, with \textit{S} representing start-up cost:
 $$f(x) = \sum_{j=1}^{3}Rx_{i} - \sum_{j=1}^{3}Cx_{i} - \sum Ix_{i,3} -\sum Sz_{j}$$
@@ -316,7 +326,7 @@ Set, Graphite, Titanium Heads & 5 & 5 & 57\\
 \vspace{5mm}
 \\
 As can be seen, this is a much more balanced production plan that still serves to optimize the company's profit.  Production is more consistent thoroughout periods, keeping the workforce employed and the store shelves stocked.  While this optimized profit is less than the original model, it does allow for a more realistic view of Golf-Sport's operations.
-\section{Further Analysis}
+\section{Range Analysis}
 Range sensitivity and resource increases were examined in regards to this problem.  The two main points of focus (as supplied by the case study) are a hypothetical increase in total maximum demand and proposed increases in advertising or graphite budget.  Both of these situations 
 will be examined independently, using the initial mathematical model as the basis.
 \subsection{Advertising Budget v. Graphite Supply}
@@ -324,7 +334,7 @@ The case study of the Golf-Sport problem presents a situation:  which would be m
 This allowed for a \$40,000 monthly advertising budget or a 2,000 pound monthly graphite stock.  As was the case before, advertising budget did not carry over to the next period, but graphite stock was assumed to.
 \par
 These new parameters were incorporated separately into two different runs of the model.  Graphite was determined to be the more valuable resource, as it increases the maximum profit to \$968,831.  This profit potential is notably larger than the baseline of \$940,366 and the increased advertising 
-profit of \$940,110.  This should help show Golf-Sport the importance of graphite to the operation, as it is a limiting factor on current profit.  It should be noted that when graphite is doubled in this case, excess stock exists at the end of the two-month period.  This suggests that with current demand and constraints, obtaining more than 2,000 pounds of graphite stock per month is unnecessary, 
+profit of \$941,110.  This should help show Golf-Sport the importance of graphite to the operation, as it is a limiting factor on current profit.  It should be noted that when graphite is doubled in this case, excess stock exists at the end of the two-month period.  This suggests that with current demand and constraints, obtaining more than 2,000 pounds of graphite stock per month is unnecessary, 
 as it will not increase profit beyond this point.
 \subsection{Doubling the Demand}
 The Golf-Sport case study also proposes an interesting change:  if maximum demand were to double, would the company be able to benenfit and maximize their profit while utilizing the current production system as originally described?  The model was adjusted to account for a hypoethetical doubling of maximum demand while maintaining all of the original constraints as set forth in the model.  

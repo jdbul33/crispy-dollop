@@ -4,15 +4,15 @@ vars = {'C1','C2','C3','G1','G2','G3','T1','T2','T3'};
 
 %set a variable to each product with zero lower bounds if applicable
 
-s = optimvar('s',vars,'lowerbound',0);
-g = optimvar('g',vars,'lowerbound',0);
-i = optimvar('i',vars,'lowerbound',0);
-w = optimvar('w',vars,'lowerbound',0);
-h = optimvar('h',vars,'lowerbound',0);
-v = optimvar('v',vars,'lowerbound',0);
-x = optimvar('x',vars,'lowerbound',0);
-y = optimvar('y',vars,'lowerbound',0);
-z = optimvar('z',vars,'lowerbound',0);
+s = optimvar('s',vars,'lowerbound',0,'type','integer');
+g = optimvar('g',vars,'lowerbound',0,'type','integer');
+i = optimvar('i',vars,'lowerbound',0,'type','integer');
+w = optimvar('w',vars,'lowerbound',0,'type','integer');
+h = optimvar('h',vars,'lowerbound',0,'type','integer');
+v = optimvar('v',vars,'lowerbound',0,'type','integer');
+x = optimvar('x',vars,'lowerbound',0,'type','integer');
+y = optimvar('y',vars,'lowerbound',0,'type','integer');
+z = optimvar('z',vars,'lowerbound',0,'type','integer');
 e = optimvar('e','lowerbound',0);
 
 

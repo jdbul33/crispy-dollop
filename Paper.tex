@@ -344,11 +344,11 @@ Using this modified model, an integer solution was found.  The objective value (
 \subsection{Mathematical Approach}
 Mathematically speaking, the Golf-Sport case study was successfully modeled, coded, and solved.  Depending on the setup of the code, each run took between 13 seconds and 30 minutes for completion.  When the problem was modeled as a linear relaxation, solutions took seconds to be produced.  Solutions were effectively produced and passed spot testing on various constraints in an attempt to verify solution integrity.
 \par
-Critically viewed, the model was effective but perhaps inefficient, especially if extended beyond the two-month period under analysis.  From a retrospective viewpoint, the model could possibly have been developed with the variables as ``produced" and ``sold", eliminating the need for the ambiguous Period 3 connotation.  A model developed in this sense could be easily expanded to more subsequent periods, increasing its utility to the organization.  It should be noted that these possible adjustments, however, would not produce any different results than what has been achieved in the current model.  An example of the modifed objective function is as follows:
-$$ function herereeeerre $$
-Discuss func here %dsifsafajdflafkjalflajlka
+Critically viewed, the model was effective but perhaps inefficient, especially if extended beyond the two-month period under analysis.  From a retrospective viewpoint, the model could possibly have been developed with the variables as ``produced" and ``sold", eliminating the need for the ambiguous Period 3 connotation.  A model developed in this sense could be easily expanded to more subsequent periods, increasing its utility to the organization.  It should be noted that these possible adjustments, however, would not produce any different results than what has been achieved in the current model.  An example of such a modifed objective function could be:
+$$ f(x) = \sum Rs_{i,j} - \sum Cp_{i,j} - \sum I(p_{i,j}-s_{i,j}) $$
+This function sets \textit{S} and \textit{P} as sold and produced items, with the difference between the two per period being the carryover inventory.
 \par
-In summary, the mathetical formulation and application on the Golf-Sport case study can be viewed as successful and easily modified to evaluate different parameters and constraints.
+In summary, the mathematical formulation and application on the Golf-Sport case study can be viewed as successful and easily modified to evaluate different parameters and constraints.
 \subsection{Company Approach}
 Upon completion of this analysis, it is evident that Golf-Sport can easily maximize their profit by utlizing such a model.  The parameters included, however, are superficial and unrealistic in many cases.  The problem modification above adjusts some constraints and adds to others, so as to help illustrate the process of developing a more complete picture of Golf-Sport operations.  While the actual numbers in the formulation are either arbitrary or unique to this case study, the modeling method utilized could be expanded and modified to fit many other production situations.
 

@@ -12,7 +12,7 @@
 \subsection{Operations Research \& Optimization}
 Optimizing profit through production in processes is studied within the realm of operations management. As the global market continues to grow and expand, businesses are focusing on remaining competitive. Erik Johannesson and Christian Karsten explain this best. ``Large organizations face thousands of planning problems every day. Some are simple, and decisions can be made quickly and efficiently by a single person. Others are on a different, larger scale which require much more effort, and they may also have a significant impact on the bottom line.  All of these decisions are interlinked, with the overall objective being to meet customer demand at the lowest overall cost."\cite{johan}
 \par
-In a survey of optimization techniques being used within operations management, the authors have broken the realm into three distinct sectors. These can be identified as input management, facilities management, and output management. Stated more simply, these correspond to scheduling, production, and vehicle routing. Failure to optimize any one of these areas can lead large inefficiencies (i.e. lost revenue) for a company. Making too much of one product leads to inventory costs, failure to plan good routes leads to higher shipping costs, and not spending enough on advertising leads to missed opportunities and subpar performance. Johnannesson and Karsten go on to say, ``As such problems often have a large scale, the impact can be significant. For example, it is not uncommon to be able to decrease logistics spending by 5 to 10 percent in a supply chain with annual logistics costs of over \$100 million. 
+In a survey of optimization techniques being used within operations management, the authors have broken the realm into three distinct sectors. These can be identified as input management, facilities management, and output management. Stated more simply, these correspond to scheduling, production, and vehicle routing, respectively. Failure to optimize any one of these areas can to lead large inefficiencies (i.e. lost revenue) for a company. Making too much of one product leads to inventory costs, failure to plan good routes leads to higher shipping costs, and not spending enough on advertising leads to missed opportunities and subpar performance. Johnannesson and Karsten go on to say, ``As such problems often have a large scale, the impact can be significant. For example, it is not uncommon to be able to decrease logistics spending by 5 to 10 percent in a supply chain with annual logistics costs of over \$100 million. 
 Additionally, it can reduce the planning time from days to minutes. Thus, evaluation of multiple scenarios becomes feasible, and an automated decision-support tool may serve as an integral part of both operational and strategic decision making."\cite{johan}  
 \subsection{Prior Work}
 There is a clear need for operations management to be optimized, especially as a business or problem grows more complex. Several approaches for operations management use genetic algorithms, especially when focusing on lot sizing within material requirements, aggregate and assortment planning, and facility layout problems.\cite{gen}  
@@ -20,9 +20,9 @@ Additionally, particle swarm optimization methods have been successfully impleme
 While this problem is not large enough to necessitate utilizing such algorithms (a global optimal solution can be determined through linear programming), these implementations are interesting approaches.
 \par
 Generally speaking, many optimization problems can be converted into a linear programming model.  The drawback to this, however, can be extremely long and have computationally expensive runtimes, depending on the solution space.  Klotz and Newman conducted research into this, and 
-while they concluded that many operations management/production problems can be solved using linear programming, it may not always be the best approach.  However, by adjusting settings and parameters in software-based solvers, many large-scale problems can be effectively solved in this way.\cite{klotz}  This Golf-Sport problem falls squarely within the facilities management/production sector.  Fei et al discovered that for large-scale production optimizations, heuristics were necessarily utilized.  Additionally, the most common solution approaches utilize branch-and-cut or branch-and-price.\cite{survey}
+while they concluded that many operations management/production problems can be solved using linear programming, it may not always be the best approach.  However, by adjusting settings and parameters in software-based solvers, many large-scale problems can be effectively solved in this way.\cite{klotz}  This Golf-Sport problem falls squarely within the facilities management/production sector.  Fei et al. discovered that for large-scale production optimizations, heuristics were necessarily utilized.  Additionally, the most common solution approaches utilize branch-and-cut or branch-and-price.\cite{survey}
 \section{Description of Problem}
-Golf-Sport is a small-sized company that produces high-quality components for people who build their own golf clubs and prebuilt sets of clubs. There are five components:  steel shafts, graphite shafts, forged iron heads, metal wood heads, and metal wood heads with titanium inserts; these products are produced in three plants:  Chandler, Glendale, and Tucson. Each plant can produce any of the components, although each plant has a different set of individual constraints and unit costs. These constraints cover labor and packaging machine time (the machine is used by all components). Note that even though the components are identical in the three plants, different production processes are used, and therefore the products use different amounts of resources in different plants.
+Golf-Sport is a small-sized company that produces high-quality components for people who build their own golf clubs and prebuilt sets of clubs. There are five components:  steel shafts, graphite shafts, forged iron heads, metal wood heads, and metal wood heads with titanium inserts; these products are produced in three plants:  Chandler, Glendale, and Tucson. Each plant can produce any of the components, although each plant has a different set of individual constraints and unit costs. These constraints cover labor and packaging machine time (the machine is used for all components). Note that even though the components are identical in the three plants, different production processes are used, and therefore the products use different amounts of resources in different plants.
 \par
 Besides component sales, the company takes the components and manufactures sets of golf clubs. Each set requires 13 shafts, 10 iron heads, and 3 wood heads. All of the shafts in a set must be the same type (steel or graphite), and all of the wood heads must be the same type (metal or metal with inserts). Each plant has unique assembly times.  Furthermore, each plant of Golf-Sport has a retail outlet to sell components and sets, and the specific plant is the only supplier for its retail outlet. The minimum and maximum amounts of demand for each location are unique.
 \par
@@ -37,7 +37,7 @@ The goal of this optimization is to develop a production plan that will maximize
 	\item Marketing is trying to get Golf-Sport to consider an advertising program that promises a 50\% increase in their maximum demand. Can the current system be utilized to increase profit with this new scheme?
 \end{itemize}
 \par
-The solution will presented as three options for production and sales: (1) manufactured and sold in month one; (2) manufactured and sold in month two; and (3) manufactured in month one and sold in month two. In this problem, two types of constraints exist: local and global. This two-month optimization can serve as a baseline and could later be expanded to more periods if desired. This particular problem appears to lend itself to integer programming as the ideal optimization method. The problem will be coded and solved using MATLAB's optimization toolbox functionality.
+The solution will presented as items produced and sold according to the following method: (1) manufactured and sold in month one; (2) manufactured and sold in month two; and (3) manufactured in month one and sold in month two. In this problem, two types of constraints exist: local and global. This two-month optimization can serve as a baseline and could later be expanded to more periods if desired. This particular problem appears to lend itself to integer programming as the ideal optimization method. The problem will be coded and solved using MATLAB's optimization toolbox functionality.
 \section{Mathematical Formulation \& Model}
 This problem is set up as a mixed integer programming problem, with a single objective function to be maximized (representing profit).  
 The decision variables are set to be the production of each product item, indexed by location and period.  In determining the maximum profit given the constraints, 
@@ -91,12 +91,12 @@ it seems reasonable to incorporate the possibility of carryover of graphite stoc
 \end{tabular}
 
 \subsection{Objective}
-The objective of this model is to maximize profit, represented as the difference between sales revenue and cost.  For the purposes of this function let \textit{R, C} \& \textit{I} represent revenue, product cost, and inventory cost, respectively.  The function can be expressed as:
+The objective of this model is to maximize profit, represented as the difference between sales revenue and cost.  For the purposes of this function let \textit{R, C,} and \textit{I} represent revenue, product cost, and inventory cost, respectively.  The function can be expressed as:
 %align functions to the left
 
 $$f(x) = \sum_{j=1}^{3}Rx_{i} - \sum_{j=1}^{3}Cx_{i} - \sum Ix_{i,3} $$
 
-The total revenue from all products produced and sold, less the cost of manufacture and inventory, is represented in this function.  While designed for a two-period optimization, the base function can be easily expanded to accomodate for more periods of production and sales.
+The total revenue from all products produced and sold, minus the cost of manufacture and inventory, is represented in this function.  While designed for a two-period optimization, the base function can be easily expanded to accomodate for more periods of production and sales.
 %superscript for plant, sub for product and period??
 \subsection{Constraints}
 In construction of this model, the following constraints were constructed within the parameters set forth by the problem:
@@ -166,7 +166,7 @@ The model was successfully optimized to the same solution over several runs, yie
 \\
 \noindent
 %begin{table}
-\begin{tabular}{ l c c c }
+\begin{tabular}{ l | c | c |c }
 \hline
 \multicolumn{4}{|c|}{Optimal Chandler Production} \\
 \hline
@@ -186,7 +186,7 @@ Set, Graphite, Titanium Heads & 0 & 35 & 84\\
 \\
 \noindent
 %begin{table}
-\begin{tabular}{ l c c c }
+\begin{tabular}{ l | c | c | c }
 \hline
 \multicolumn{4}{|c|}{Optimal Glendale Production} \\
 \hline
@@ -206,7 +206,7 @@ Set, Graphite, Titanium Heads & 0 & 68 & 83\\
 \\
 \noindent
 %begin{table}
-\begin{tabular}{ l c c c }
+\begin{tabular}{ l | c | c | c }
 \hline
 \multicolumn{4}{|c|}{Optimal Tucson Production} \\
 \hline
@@ -267,7 +267,7 @@ After factoring in these additional constraints, the problem was optimized to yi
 \\
 \noindent
 %begin{table}
-\begin{tabular}{ l c c c }
+\begin{tabular}{ l | c | c | c }
 \hline
 \multicolumn{4}{|c|}{Optimal Modified Chandler Production} \\
 \hline
@@ -287,7 +287,7 @@ Set, Graphite, Titanium Heads & 5 & 5 & 49\\
 \\
 \noindent
 %begin{table}
-\begin{tabular}{ l c c c }
+\begin{tabular}{ l | c | c | c }
 \hline
 \multicolumn{4}{|c|}{Optimal Modified Glendale Production} \\
 \hline
@@ -307,7 +307,7 @@ Set, Graphite, Titanium Heads & 5 & 5 & 48\\
 \\
 \noindent
 %begin{table}
-\begin{tabular}{ l c c c }
+\begin{tabular}{ l | c | c | c }
 \hline
 \multicolumn{4}{|c|}{Optimal Modified Tucson Production} \\
 \hline

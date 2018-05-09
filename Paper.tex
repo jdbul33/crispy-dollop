@@ -95,7 +95,7 @@ it seems reasonable to incorporate the possibility of carryover of graphite stoc
 The objective of this model is to maximize profit, represented as the difference between sales revenue and cost.  For the purposes of this function let \textit{R, C,} and \textit{I} represent revenue, product cost, and inventory cost, respectively.  The function can be expressed as:
 %align functions to the left
 
-$$f(x) = \sum_{j=1}^{3}Rx_{i} - \sum_{j=1}^{3}Cx_{i} - \sum Ix_{i,3} $$
+$$f(x) = \sum{Rx_{i,j}} - \sum{Cx_{i,j}} - \sum Ix_{i,3} $$
 
 The total revenue from all products produced and sold, minus the cost of manufacture and inventory, is represented in this function.  While designed for a two-period optimization, the base function can be easily expanded to accomodate for more periods of production and sales.
 %superscript for plant, sub for product and period??
@@ -245,7 +245,7 @@ Upon further examination and analysis of the model \& results, the current param
 \begin{itemize}
 	\item Addition of minimum labor constraints
 	\item Addition of basic start-up cost constraints
-	\item Increasing of minimum demand for items with currently a zero minimum
+	\item Increasing of minimum demand for items with a current production minimum of zero
 	\item Marginal increase in per-item revenue for period two to help offset for cost increases
 	\item Incorporate parameters to reflect items lost in quality control checks
 \end{itemize}
@@ -330,7 +330,7 @@ Set, Graphite, Titanium Heads & 5 & 5 & 57\\
 \\
 As can be seen, this is a much more balanced production plan that still serves to optimize the company's profit.  Production is more consistent thoroughout periods, keeping the workforce employed and the store shelves stocked.  While this optimized profit is less than the original model, it does allow for a more realistic view of Golf-Sport's operations.
 \section{Range Analysis}
-Range sensitivity and resource increases were examined in regards to this problem.  The two main points of focus are a hypothetical increase in total maximum demand and proposed increases in advertising or graphite budget.  Both of these situations 
+Range sensitivity and resource increases were examined in regard to this problem.  The two main points of focus are a hypothetical increase in total maximum demand and proposed increases in advertising or graphite budget.  Both of these situations 
 will be examined independently, using the initial mathematical model (not the modified model from the prior section) as the basis.
 \subsection{Advertising Budget v. Graphite Supply}
 The case study of the Golf-Sport problem presents a situation:  which would be more beneficial for the company, more monthly advertising budget or more graphite stock?  Since an amount of increase was not given, the situation was modeled with double the resources in the original problem.  
